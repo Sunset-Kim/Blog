@@ -33,6 +33,9 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to="/blog">Blog</Link>
+          </li>
         </ul>
       </nav>
       <main>

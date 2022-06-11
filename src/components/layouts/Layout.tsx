@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
 
 interface LayoutProps {
@@ -6,9 +6,25 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, children }) => {
+  const { site } = useStaticQuery(graphql`
+    query MyQuery {
+      site {
+        siteMetadata {
+          title
+          siteUrl
+          description
+          since
+        }
+      }
+    }
+  `);
+
   return (
     <div>
-      <title>{pageTitle}</title>
+      <title>
+        {pageTitle} | {site.siteMetadata.title}
+      </title>
+      <header>{site.siteMetadata.title}</header>
       <nav>
         <ul>
           <li>

@@ -1,8 +1,7 @@
+import Layout from "@components/layouts/Layout";
 import { PageProps } from "gatsby";
 import { useStaticQuery, graphql } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
-import Layout from "../components/layouts/Layout";
 
 interface FrontMatter {
   author: string;

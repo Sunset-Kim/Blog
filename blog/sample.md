@@ -1,13 +1,17 @@
 ---
-__Advertisement :)__
-
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-i18n with plurals support and easy syntax.
-
-You will like those projects!
+title: "개쩌는 개츠비"
+datePublished: "2022-06-11"
+author: "1번민우"
 ---
+
+**Advertisement :)**
+
+- **[pica](https://nodeca.github.io/pica/demo/)** - high quality and fast image
+  resize in browser.
+- **[babelfish](https://github.com/nodeca/babelfish/)** - developer friendly
+  i18n with plurals support and easy syntax.
+
+## You will like those projects!
 
 # h1 Heading 8-)
 
@@ -22,12 +26,6 @@ You will like those projects!
 ###### h6 Heading
 
 ## Horizontal Rules
-
----
-
----
-
----
 
 ## Typographic replacements
 
@@ -169,11 +167,7 @@ see [how to change output](https://github.com/markdown-it/markdown-it-emoji#chan
 - 19^th^
 - H~2~O
 
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
 ++Inserted text++
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
 
 ==Marked text==
 

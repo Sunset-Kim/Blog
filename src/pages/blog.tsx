@@ -1,25 +1,42 @@
 import { PageProps } from "gatsby";
 import { useStaticQuery, graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
 import Layout from "../components/layouts/Layout";
 
+interface FrontMatter {
+  author: string;
+  datePublished: string;
+  title: string;
+}
+
+interface MDNode {
+  frontmatter: FrontMatter;
+  id: string;
+  html: string;
+  parent: {
+    modifiedTime: string;
+  };
+}
 interface BlogPageProps {
   data: {
-    allFile: {
-      nodes: {
-        name: string;
-      }[];
+    allMarkdownRemark: {
+      nodes: MDNode[];
     };
   };
+  extensions: {};
 }
 
 const BlogPage: React.FC<BlogPageProps> = ({ data }) => {
-  console.log(data);
   return (
     <Layout pageTitle="블로그 포스트">
       <ul>
-        {data.allFile.nodes.map((node) => (
-          <li key={node.name}>{node.name}</li>
+        {data.allMarkdownRemark.nodes.map((node) => (
+          <article key={node.id}>
+            <h2>{node.frontmatter.title}</h2>
+            <p>Posted: {node.frontmatter.datePublished}</p>
+            <div dangerouslySetInnerHTML={{ __html: node.html }} />
+          </article>
         ))}
       </ul>
     </Layout>
@@ -27,10 +44,15 @@ const BlogPage: React.FC<BlogPageProps> = ({ data }) => {
 };
 
 export const query = graphql`
-  query MyQuery2 {
-    allFile(filter: { sourceInstanceName: { eq: "blog" } }) {
+  query {
+    allMarkdownRemark(sort: { fields: frontmatter___datePublished, order: DESC }) {
       nodes {
-        name
+        id
+        frontmatter {
+          title
+          datePublished(formatString: "MMMM DD, YYYY")
+        }
+        html
       }
     }
   }

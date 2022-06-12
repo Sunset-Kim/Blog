@@ -18,6 +18,32 @@ const config: GatsbyConfig = {
         path: `${__dirname}/blog`,
       },
     },
+    "gatsby-plugin-mdx",
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-autolink-headers`,
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: true,
+              noInlineHighlight: false,
+              escapeEntities: {},
+            },
+          },
+        ],
+      },
+    },
   ],
 };
 

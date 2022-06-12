@@ -1,5 +1,6 @@
 const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { reporter } = require("gatsby-cli/lib/reporter/reporter");
 
 // Setup Import Alias
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
@@ -52,6 +53,43 @@ exports.createPages = async function ({ actions, graphql }) {
       path: `blog${slug}`,
       component: require.resolve(`./src/templates/blog-post.tsx`),
       context: { slug: slug },
+    });
+  });
+
+  const result = await graphql(
+    `
+      {
+        allMarkdownRemark(sort: { fields: [frontmatter___datePublished], order: DESC }, limit: 1000) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
+
+  const posts = result.data.allMarkdownRemark.edges;
+  const postsPerPage = 2;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  Array.from({ length: numPages }).forEach((_, i) => {
+    actions.createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: path.resolve("./src/templates/blog-list.tsx"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
     });
   });
 };

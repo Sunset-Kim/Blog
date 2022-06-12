@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../components/layouts/Layout";
+import { graphql, Link } from "gatsby";
+import Layout from "@components/layouts/Layout";
 
 interface BlogPostProps {
   data: {
@@ -20,7 +20,6 @@ export default function BlogPost({ data }: BlogPostProps) {
   return (
     <Layout pageTitle={post.frontmatter.title}>
       <div>
-        <h1>{post.frontmatter.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </Layout>

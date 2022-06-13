@@ -32,12 +32,12 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   margin: 0.5em 0;
-  overflow: auto;
+  padding: 1em 0;
+  padding-left: 2em;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  padding: 2em 0;
   background-color: transparent !important;
   background-image: linear-gradient(to bottom, #2a2139 75%, #34294f);
 }
@@ -137,8 +137,4 @@ pre[class*="language-"] {
 
 .token.inserted {
   color: green;
-}
-
-.line-numbers .line-numbers-rows {
-  padding: 2em 0 2em 0.5em;
 }

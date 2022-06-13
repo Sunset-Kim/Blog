@@ -52,17 +52,10 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
+        featuredImage
         title
-        datePublished(formatString: "MM DD dddd,YYYY", locale: "ko")
-        author
-        image {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        image_alt
-        image_credit_link
-        image_credit_text
+        date(formatString: "MM DD dddd,YYYY", locale: "KO")
+        tags
       }
     }
   }

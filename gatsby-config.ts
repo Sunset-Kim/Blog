@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: `blog`,
-        path: `${__dirname}/blog`,
+        path: `${__dirname}/contents/blog`,
       },
     },
     "gatsby-plugin-mdx",
@@ -28,25 +28,13 @@ const config: GatsbyConfig = {
           {
             resolve: "gatsby-remark-code-buttons",
             options: {
-              // Optional button container class name. Defaults
-              // to 'gatsby-code-button-container'.
               buttonContainerClass: `customButtonContainerClass`,
-              // Optional button class name. Defaults to 'gatsby-code-button'.
               buttonClass: `customButtonClass`,
-              // Optional svg icon class name. Defaults to 'gatsby-code-button-icon'.
               svgIconClass: `customSvgIconClass`,
-              // Optional svg icon. Defaults to svg string and can be
-              // replaced with any other valid svg. Use custom classes
-              // in the svg string and skip `iconClass` option.
-              // Optional tooltip text. Defaults to ''.
               tooltipText: `Copy`,
-              // Optional toaster class name. Defaults to ''.
               toasterClass: `customToasterClass`,
-              // Optional toaster text class name. Defaults to ''.
               toasterTextClass: `customToasterTextClass`,
-              // Optional toaster text. Defaults to ''.
               toasterText: "복사되었습니다!",
-              // Optional toaster duration. Defaults to 3500.
               toasterDuration: 5000,
             },
           },
@@ -62,7 +50,7 @@ const config: GatsbyConfig = {
               classPrefix: "language-",
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: true,
+              showLineNumbers: false,
               noInlineHighlight: false,
               escapeEntities: {},
             },

@@ -24,23 +24,10 @@ interface BlogPostProps {
 export default function BlogPost({ data }: BlogPostProps) {
   const post = data.markdownRemark;
   const image = getImage(post.frontmatter.image);
-  const isImgExist =
-    post.frontmatter.image &&
-    post.frontmatter.image_alt &&
-    post.frontmatter.image_credit_link &&
-    post.frontmatter.image_credit_text;
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
-      {isImgExist && (
-        <>
-          <GatsbyImage image={image} alt={post.frontmatter.image_alt} />
-          <p>
-            Photo Credit: <a href={post.frontmatter.image_credit_link}>{post.frontmatter.image_credit_text}</a>
-          </p>
-        </>
-      )}
-
+      {image && <GatsbyImage image={image} alt={post.frontmatter.image_alt} />}
       <div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>

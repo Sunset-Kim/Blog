@@ -24,6 +24,10 @@ const config: GatsbyConfig = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-figure-caption`,
+            options: { figureClassName: "md-figure" },
+          },
           `gatsby-remark-autolink-headers`,
           {
             resolve: "gatsby-remark-code-buttons",
@@ -34,14 +38,15 @@ const config: GatsbyConfig = {
               tooltipText: `Copy`,
               toasterClass: `customToasterClass`,
               toasterTextClass: `customToasterTextClass`,
-              toasterText: "복사되었습니다!",
+              toasterText: "Copied!",
               toasterDuration: 5000,
             },
           },
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 480,
+              showCaptions: true,
             },
           },
           {

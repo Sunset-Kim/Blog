@@ -5,24 +5,6 @@ import { Link } from "gatsby";
 
 function BlogList({ data, ...rest }) {
   const posts = data.allMarkdownRemark.edges;
-  const {
-    pageContext: { currentPage, numPages: total },
-  } = rest;
-
-  const 페이지생성 = () => {
-    const result = [];
-
-    for (let i = currentPage - 3; result.length < 5 && total >= i; i++) {
-      if (i <= 0) continue;
-      const pageInfo = {
-        path: i === 1 ? `/blog` : `/blog/${i}`,
-        pageNumber: i,
-      };
-      result.push(pageInfo);
-    }
-
-    return result;
-  };
 
   return (
     <Layout pageTitle="아아">
@@ -61,8 +43,8 @@ function BlogList({ data, ...rest }) {
 export default BlogList;
 
 export const blogListQuery = graphql`
-  query blogListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(sort: { fields: [frontmatter___datePublished], order: DESC }, limit: $limit, skip: $skip) {
+  query ($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
           id

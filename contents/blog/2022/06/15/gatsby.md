@@ -1,13 +1,16 @@
 ---
-slug: "/2022/06/15/react-portal"
-title: "리액트 Portal"
-date: 2022-06-03
+slug: "/2022/06/15/gatsby"
+title: "개츠비로 만들어보는 블로그"
+date: 2022-06-15
 layout: post
 tags:
-  - react
-featuredImage: doctor-strange-portal.jpg
+  - gatsby
+featuredImage: gatsby.png
 ---
 
+# 굉장히 중요한 테스트를 하고 있다!
+
+![개츠비](./gatsby.png)
 This text is **_really important_**.
 
 ```javascript

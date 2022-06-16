@@ -1,21 +1,68 @@
 import * as React from "react";
 import Layout from "../components/layouts/Layout";
-import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { graphql, Link } from "gatsby";
+import "@styles/reset.css";
 
-const IndexPage = () => {
+interface BlogQuery {
+  data: {
+    allMarkdownRemark: {
+      edges: {
+        node: {
+          id: string;
+          fields: {
+            slug: string;
+          };
+          frontmatter: {
+            title: string;
+            date: Date;
+            featuredImages: string;
+            tags: string[];
+          };
+        };
+      }[];
+    };
+  };
+}
+
+const IndexPage = ({ data }: BlogQuery) => {
   return (
     <main>
       <Layout pageTitle="Home Page">
-        <StaticImage
-          src="https://static.wikia.nocookie.net/pokemon/images/5/52/%ED%94%BC%EC%B9%B4%EC%B8%84_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/200?cb=20170405000019&path-prefix=ko"
-          alt="카피츄"
-        />
-        <StaticImage src="../assets/picka.png" alt="피카츄" />
-        <p>I'm making this by following the Gatsby Tutorial.</p>
+        <div>
+          <ul>
+            {data.allMarkdownRemark.edges.map((list) => (
+              <li key={list.node.id}>
+                <Link to={`/blog${list.node.fields.slug}`}>
+                  <h3>{list.node.frontmatter.title}</h3>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Layout>
     </main>
   );
 };
 
 export default IndexPage;
+
+export const blogListQuery = graphql`
+  {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            featuredImage
+            date
+            tags
+          }
+        }
+      }
+    }
+  }
+`;

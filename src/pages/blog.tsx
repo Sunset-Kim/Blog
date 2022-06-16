@@ -1,5 +1,5 @@
-import { graphql, Link } from "gatsby";
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { graphql, Link, withPrefix } from "gatsby";
+import { GatsbyImage, IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
 interface BlogQuery {
@@ -14,7 +14,7 @@ interface BlogQuery {
           frontmatter: {
             title: string;
             date: Date;
-            featuredImages: string;
+            featuredImages: IGatsbyImageData;
             tags: string[];
           };
         };
@@ -30,7 +30,6 @@ const blog = ({ data }: BlogQuery) => {
         {data.allMarkdownRemark.edges.map((list) => (
           <li key={list.node.id}>
             <Link to={`/blog${list.node.fields.slug}`}>
-              <GatsbyImage src={list.node.frontmatter.featuredImages} alt={list.node.frontmatter.title} />
               <h3>{list.node.frontmatter.title}</h3>
             </Link>
           </li>

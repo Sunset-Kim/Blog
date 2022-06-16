@@ -1,7 +1,6 @@
-import * as React from "react";
-import Layout from "../components/layouts/Layout";
-import { graphql, Link } from "gatsby";
-import "@styles/reset.css";
+import { graphql, Link, withPrefix } from "gatsby";
+import { GatsbyImage, IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
+import React from "react";
 
 interface BlogQuery {
   data: {
@@ -15,7 +14,7 @@ interface BlogQuery {
           frontmatter: {
             title: string;
             date: Date;
-            featuredImages: string;
+            featuredImages: IGatsbyImageData;
             tags: string[];
           };
         };
@@ -24,27 +23,23 @@ interface BlogQuery {
   };
 }
 
-const IndexPage = ({ data }: BlogQuery) => {
+const blog = ({ data }: BlogQuery) => {
   return (
-    <main>
-      <Layout pageTitle="Home Page">
-        <div>
-          <ul>
-            {data.allMarkdownRemark.edges.map((list) => (
-              <li key={list.node.id}>
-                <Link to={`/blog${list.node.fields.slug}`}>
-                  <h3>{list.node.frontmatter.title}</h3>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Layout>
-    </main>
+    <div>
+      <ul>
+        {data.allMarkdownRemark.edges.map((list) => (
+          <li key={list.node.id}>
+            <Link to={`/blog${list.node.fields.slug}`}>
+              <h3>{list.node.frontmatter.title}</h3>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default IndexPage;
+export default blog;
 
 export const blogListQuery = graphql`
   {

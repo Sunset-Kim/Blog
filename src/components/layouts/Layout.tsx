@@ -11,9 +11,7 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
       site {
         siteMetadata {
           title
-          siteUrl
           description
-          since
         }
       }
     }

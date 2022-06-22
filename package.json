@@ -16,12 +16,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
     "gatsby": "^4.16.0",
+    "gatsby-plugin-emotion": "^7.17.0",
     "gatsby-plugin-image": "^2.16.1",
     "gatsby-plugin-mdx": "^3.16.1",
     "gatsby-plugin-sharp": "^4.16.1",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-autolink-headers": "^5.16.0",
     "gatsby-remark-code-buttons": "^2.0.7",
     "gatsby-remark-images": "^6.16.0",

@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Godo";
+  src: url("../fonts/GodoM.woff2");
+}
+
+body {
+  font-family: "Godo";
+}

@@ -2,6 +2,7 @@ import * as React from "react";
 import Layout from "../components/layouts/Layout";
 import { graphql, Link } from "gatsby";
 import "@styles/reset.css";
+import "@styles/global.css";
 
 interface BlogQuery {
   data: {

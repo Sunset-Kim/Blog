@@ -61,6 +61,8 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    `gatsby-plugin-web-font-loader`,
+    `gatsby-plugin-emotion`,
   ],
 };
 

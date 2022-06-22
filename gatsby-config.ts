@@ -2,8 +2,8 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "민우의개발블로그",
-    description: "너도 한번 당해봐",
+    title: "김민우 블로그",
+    description: "김민우씨의 개발여정, 개발로그",
   },
   graphqlTypegen: true,
   plugins: [

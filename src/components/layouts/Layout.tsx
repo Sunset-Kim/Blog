@@ -25,29 +25,31 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
         {pageTitle} | {site.siteMetadata.title}
       </title>
       <Header>
-        {site.siteMetadata.title}
+        <TITLE>{site.siteMetadata.title}</TITLE>
+
         <nav>
           <ul>
             <li>
-              <Link to="/blog">블로그 톺아보기</Link>
+              <Link to="/blog">톹아보기</Link>
             </li>
           </ul>
         </nav>
       </Header>
 
-      <main>
-        <h1>{pageTitle}</h1>
-        {children}
-      </main>
+      <main>{children}</main>
     </WRAPPER>
   );
 };
 
 const WRAPPER = styled.div`
   margin: 0 auto;
-  padding: 0 48px;
-  min-width: 1024px;
-  max-width: 1200px;
+  max-width: 800px;
+  padding: 0 16px;
+`;
+
+const TITLE = styled.h1`
+  font-weight: 700;
+  font-size: 24px;
 `;
 
 export default Layout;

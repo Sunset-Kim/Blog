@@ -28,7 +28,7 @@ interface BlogQuery {
 const IndexPage = ({ data }: BlogQuery) => {
   return (
     <main>
-      <Layout pageTitle="Home Page">
+      <Layout pageTitle="홈">
         <div>
           <ul>
             {data.allMarkdownRemark.edges.map((list) => (

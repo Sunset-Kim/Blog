@@ -1,3 +1,4 @@
+import Header from "@components/Header/Header";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
 
@@ -22,7 +23,7 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
       <title>
         {pageTitle} | {site.siteMetadata.title}
       </title>
-      <header>{site.siteMetadata.title}</header>
+      <Header>{site.siteMetadata.title}</Header>
       <nav>
         <ul>
           <li>

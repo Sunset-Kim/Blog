@@ -1,6 +1,13 @@
 @font-face {
   font-family: "Godo";
+  font-weight: 400;
   src: url("../fonts/GodoM.woff2");
+}
+
+@font-face {
+  font-family: "Godo";
+  font-weight: 700;
+  src: url("../fonts/GodoB.woff2");
 }
 
 body {

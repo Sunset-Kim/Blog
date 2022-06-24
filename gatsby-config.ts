@@ -8,16 +8,8 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: `blog`,
-        path: `${__dirname}/contents/blog`,
-      },
-    },
-    "gatsby-plugin-mdx",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -61,8 +53,49 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `blog`,
+        path: `${__dirname}/contents/blog`,
+      },
+    },
+
     `gatsby-plugin-web-font-loader`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-emotion-dark-mode`,
+      options: {
+        light: {
+          blue: {
+            300: "#8ecae6",
+            400: "#219ebc",
+            500: "#126782",
+            600: "#023047",
+          },
+          orange: {
+            300: "#ffb703",
+            400: "#fd9e02",
+            500: "#fb8500",
+            600: "#fb9017",
+          },
+        },
+        dark: {
+          blue: {
+            300: "#8ecae6",
+            400: "#219ebc",
+            500: "#126782",
+            600: "#023047",
+          },
+          orange: {
+            300: "#ffb703",
+            400: "#fd9e02",
+            500: "#fb8500",
+            600: "#fb9017",
+          },
+        },
+      },
+    },
   ],
 };
 

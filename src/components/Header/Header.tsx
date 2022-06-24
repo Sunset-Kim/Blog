@@ -9,7 +9,12 @@ const CONTAINER = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
+  padding: 24px;
+  box-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.15);
+
+  @media screen and (min-width: 768px) {
+    padding: 24px 36px;
+  }
 `;
 
 export default Header;

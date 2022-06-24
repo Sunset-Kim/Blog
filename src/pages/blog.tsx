@@ -52,7 +52,13 @@ export const blogListQuery = graphql`
           }
           frontmatter {
             title
-            featuredImage
+            image {
+              childImageSharp {
+                fluid(maxWidth: 640, quality: 85) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             date
             tags
           }

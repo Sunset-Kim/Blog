@@ -12,9 +12,6 @@ interface BlogPostProps {
         datePublished: string;
         author: string;
         image: IGatsbyImageData;
-        image_alt: string;
-        image_credit_link: string;
-        image_credit_text: string;
       };
       html: string;
     };
@@ -27,7 +24,6 @@ export default function BlogPost({ data }: BlogPostProps) {
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
-      {image && <GatsbyImage image={image} alt={post.frontmatter.image_alt} />}
       <div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
@@ -39,7 +35,13 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
-        featuredImage
+        image {
+          childImageSharp {
+            fluid(maxWidth: 640, quality: 85) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         title
         date(formatString: "MM DD dddd,YYYY", locale: "KO")
         tags

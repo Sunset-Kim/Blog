@@ -7,3 +7,7 @@ tags:
   - gatsby
 image: ./picka.png
 ---
+
+### 피카츄
+
+![피카츄](./picka.png)

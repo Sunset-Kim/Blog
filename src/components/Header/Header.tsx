@@ -10,7 +10,9 @@ const CONTAINER = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 24px;
+  border-bottom: 1px solid #eaeaea;
   box-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.15);
+  min-width: 340px;
 
   @media screen and (min-width: 768px) {
     padding: 24px 36px;

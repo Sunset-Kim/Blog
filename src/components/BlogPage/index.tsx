@@ -1,34 +1,121 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { PageProps } from "gatsby";
 import { BlogQuery, ObjectValue, RenderPostList } from "types/Qureys";
 import PostList from "@components/PostList";
 import Layout from "@components/layouts/Layout";
+import styled from "@emotion/styled";
+import { ArchiveList } from "./aside";
+
+type InitState = {
+  key?: "year" | "tag" | null;
+  value?: any;
+  renderPost: RenderPostList[];
+};
+
+type Action =
+  | {
+      type: "SET_POST";
+      payload: InitState["renderPost"];
+    }
+  | {
+      type: "SET_QUERY";
+      payload: {
+        key: "year" | "tag" | null;
+        value: any;
+      };
+    };
+
+const initialState: InitState = {
+  renderPost: [],
+};
+
+const reducer = (state: InitState, action: Action): InitState => {
+  console.log(action);
+  switch (action.type) {
+    case "SET_POST":
+      return {
+        ...state,
+        renderPost: [...action.payload],
+      };
+    case "SET_QUERY":
+      return {
+        ...state,
+        key: action.payload.key,
+        value: action.payload.value,
+      };
+    default:
+      return state;
+  }
+};
 
 const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) => {
   const { data, location } = props;
   const allPosts = data.allMarkdownRemark.edges.map((edge) => edge.node);
-  const [posts, setPosts] = useState<RenderPostList[]>();
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { key, value } = state;
 
   useEffect(() => {
     const year = new URLSearchParams(location.search).get("year");
     const tag = new URLSearchParams(location.search).get("tag");
 
-    console.log("year", year);
-    console.log("tag", tag);
+    const key = year ? "year" : tag ? "tag" : null;
+    const value = year ? year : tag ? tag : undefined;
+
+    dispatch({
+      type: "SET_QUERY",
+      payload: {
+        key,
+        value,
+      },
+    });
   }, [location.search]);
 
   useEffect(() => {
-    setPosts(allPosts);
-  }, []);
+    console.log("asdf");
+    dispatch({
+      type: "SET_POST",
+      payload:
+        key === "year"
+          ? allPosts.filter((p) => new Date(p.frontmatter.date).getFullYear().toString() === value)
+          : key === "tag"
+          ? allPosts.filter((p) => p.frontmatter.tags?.includes(key))
+          : allPosts,
+    });
+  }, [state.key]);
 
   return (
     <Layout pageTitle="안녕">
-      {posts &&
-        posts.map((list) => {
-          return <PostList key={list.id} renderPost={list} />;
-        })}
+      <LAYOUT_COL_2>
+        <LAYOUT_SIDE>
+          <ArchiveList posts={allPosts} />
+        </LAYOUT_SIDE>
+        <LAYOUT_MAIN>
+          {state.renderPost.map((list) => {
+            return <PostList key={list.id} renderPost={list} />;
+          })}
+        </LAYOUT_MAIN>
+      </LAYOUT_COL_2>
     </Layout>
   );
 };
+
+const LAYOUT_COL_2 = styled.div`
+  display: flex;
+`;
+const LAYOUT_SIDE = styled.aside`
+  border-right: 1px solid #eaeaea;
+  padding: 24px 24px;
+  width: 240px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+const LAYOUT_MAIN = styled.main`
+  flex: 1;
+  max-width: 786px;
+  padding: 24px;
+`;
 
 export default BlogPage;

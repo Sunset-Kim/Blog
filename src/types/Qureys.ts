@@ -17,7 +17,7 @@ export type RenderPostList = {
   excerpt: string;
   fields: { slug: string };
   frontmatter: {
-    date: string;
+    date: Date;
     image: { childImageSharp: IGatsbyImageData };
     tags: string[];
     title: string;

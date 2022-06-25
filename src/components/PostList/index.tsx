@@ -12,7 +12,6 @@ const PostList: React.FC<PageListProps> = ({ renderPost }) => {
   const { fields, frontmatter, excerpt } = renderPost;
   const { slug } = fields;
   const { title, date, image } = frontmatter;
-
   const renderImage = getImage(image?.childImageSharp);
 
   return (
@@ -22,7 +21,7 @@ const PostList: React.FC<PageListProps> = ({ renderPost }) => {
           <LIST_IMG>{renderImage && <GatsbyImage image={renderImage} alt={title} />}</LIST_IMG>
           <LIST_TEXT>
             <h3>{title}</h3>
-            <span>{date}</span>
+            <span>{date.toString()}</span>
             <p>{excerpt}</p>
           </LIST_TEXT>
         </LIST_ITEM>

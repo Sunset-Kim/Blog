@@ -63,14 +63,10 @@ const TITLE = styled.h1`
   }
 `;
 
-const CONTENTS = styled.main`
+const CONTENTS = styled.div`
   min-width: 340px;
   max-width: 1024px;
-  padding: 24px 16px;
-
-  @media screen and (min-width: 768px) {
-    padding: 36px;
-  }
+  margin: 0 auto;
 `;
 
 export default Layout;

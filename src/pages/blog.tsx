@@ -15,7 +15,7 @@ export const blogListQuery = graphql`
           }
           frontmatter {
             title
-            date(formatString: "YYYY-MM-DD dddd", locale: "ko")
+            date(formatString: "YYYY-MM-DD", locale: "ko")
             tags
             image {
               childImageSharp {

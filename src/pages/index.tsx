@@ -11,13 +11,13 @@ const IndexPage = ({ data }: BlogQuery) => {
   return (
     <main>
       <Layout pageTitle="홈">
-        <div>
+        <main>
           <ul>
             {data.allMarkdownRemark.edges.map((list) => {
               return <PostList key={list.node.id} renderPost={list.node} />;
             })}
           </ul>
-        </div>
+        </main>
       </Layout>
     </main>
   );
@@ -37,7 +37,7 @@ export const blogListQuery = graphql`
           excerpt(pruneLength: 200, format: PLAIN, truncate: true)
           frontmatter {
             title
-            date(formatString: "YYYY-MM-DD dddd", locale: "ko")
+            date(formatString: "YYYY-MM-DD", locale: "ko")
             tags
             image {
               childImageSharp {

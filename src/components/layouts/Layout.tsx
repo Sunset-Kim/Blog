@@ -25,7 +25,9 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
         {pageTitle} | {site.siteMetadata.title}
       </title>
       <Header>
-        <TITLE>{site.siteMetadata.title}</TITLE>
+        <TITLE>
+          <Link to="/">{site.siteMetadata.title}</Link>
+        </TITLE>
 
         <nav>
           <ul>

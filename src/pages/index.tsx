@@ -3,8 +3,9 @@ import Layout from "../components/layouts/Layout";
 import { graphql, Link } from "gatsby";
 import "@styles/reset.css";
 import "@styles/global.css";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import PostList from "@components/PostList";
 
 interface BlogQuery {
   data: {
@@ -12,17 +13,16 @@ interface BlogQuery {
       edges: {
         node: {
           id: string;
+          excerpt: string;
           fields: {
             slug: string;
           };
           frontmatter: {
             title: string;
-            date: Date;
+            date: string;
             tags: string[];
             image: {
-              childImageSharp: {
-                gatsbyImageData: IGatsbyImageData;
-              };
+              childImageSharp: IGatsbyImageData;
             };
           };
         };
@@ -32,29 +32,18 @@ interface BlogQuery {
 }
 
 const IndexPage = ({ data }: BlogQuery) => {
-  console.log(data);
   return (
     <main>
       <Layout pageTitle="홈">
         <div>
           <ul>
             {data.allMarkdownRemark.edges.map((list) => {
-              console.log(list.node.frontmatter.image?.childImageSharp.gatsbyImageData);
-              return (
-                <li key={list.node.id}>
-                  <Link to={`/blog${list.node.fields.slug}`}>
-                    <IMG_CONTAINER>
-                      {list.node.frontmatter?.image?.childImageSharp.gatsbyImageData && (
-                        <GatsbyImage
-                          image={list.node.frontmatter.image.childImageSharp.gatsbyImageData}
-                          alt={list.node.id}
-                        />
-                      )}
-                    </IMG_CONTAINER>
-                    <h3>{list.node.frontmatter.title}</h3>
-                  </Link>
-                </li>
-              );
+              const { frontmatter, id, fields, excerpt } = list.node;
+              const { title, date } = frontmatter;
+              const { slug } = fields;
+              const image = getImage(list.node.frontmatter.image?.childImageSharp);
+
+              return <PostList key={id} title={title} date={date} contents={excerpt} slug={slug} image={image} />;
             })}
           </ul>
         </div>
@@ -65,16 +54,6 @@ const IndexPage = ({ data }: BlogQuery) => {
 
 export default IndexPage;
 
-const IMG_CONTAINER = styled.div`
-  width: 75px;
-  height: 75px;
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 export const blogListQuery = graphql`
   {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -84,13 +63,14 @@ export const blogListQuery = graphql`
           fields {
             slug
           }
+          excerpt(pruneLength: 200, format: PLAIN, truncate: true)
           frontmatter {
             title
-            date
+            date(formatString: "YYYY-MM-DD dddd", locale: "ko")
             tags
             image {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 75)
+                gatsbyImageData(width: 200, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
               }
             }
           }

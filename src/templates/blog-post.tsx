@@ -3,7 +3,16 @@ import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import "@styles/code-copy-button.css";
+import styled from "@emotion/styled";
 
+type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
+type PageContext = {
+  date: string;
+  next: Page | null;
+  previous: Page | null;
+  slug: string;
+  title: string;
+};
 interface BlogPostProps {
   data: {
     markdownRemark: {
@@ -16,20 +25,45 @@ interface BlogPostProps {
       html: string;
     };
   };
+  pageContext: PageContext;
 }
 
-export default function BlogPost({ data }: BlogPostProps) {
-  const post = data.markdownRemark;
-  const image = getImage(post.frontmatter.image);
+export default function BlogPost(props: BlogPostProps) {
+  const post = props.data.markdownRemark;
+  const pagecontext = props.pageContext;
+
+  console.log(pagecontext);
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
-      <div>
+      <CONTENTS>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      </div>
+      </CONTENTS>
+      <PAGE>
+        {pagecontext.next && (
+          <>
+            <Link to={`/blog${pagecontext.next.fields.slug}`}>{pagecontext.next.frontmatter.title}</Link>
+          </>
+        )}
+        {pagecontext.previous && (
+          <>
+            <Link to={`/blog${pagecontext.previous.fields.slug}`}>{pagecontext.previous.frontmatter.title}</Link>
+          </>
+        )}
+      </PAGE>
     </Layout>
   );
 }
+
+const CONTENTS = styled.main`
+  figcaption {
+    text-align: center;
+    font-style: italic;
+  }
+`;
+
+const PAGE = styled.div``;
+
 export const query = graphql`
   query ($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {

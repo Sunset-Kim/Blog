@@ -1,20 +1,24 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export interface BlogQuery {
-  allMarkdownRemark: {
-    edges: {
-      node: PostList;
-    }[];
+  data: {
+    allMarkdownRemark: {
+      edges: {
+        node: RenderPostList;
+      }[];
+    };
   };
 }
 
-export type PostList = {
+export type ObjectValue<T extends object, K extends keyof T> = T[K];
+
+export type RenderPostList = {
   id: string;
   excerpt: string;
   fields: { slug: string };
   frontmatter: {
     date: string;
-    image: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    image: { childImageSharp: IGatsbyImageData };
     tags: string[];
     title: string;
   };

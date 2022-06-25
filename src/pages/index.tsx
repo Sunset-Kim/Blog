@@ -1,35 +1,11 @@
 import * as React from "react";
 import Layout from "../components/layouts/Layout";
 import { graphql, Link } from "gatsby";
+import { BlogQuery } from "types/Qureys";
 import "@styles/reset.css";
 import "@styles/global.css";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
-import styled from "@emotion/styled";
+import { getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import PostList from "@components/PostList";
-
-interface BlogQuery {
-  data: {
-    allMarkdownRemark: {
-      edges: {
-        node: {
-          id: string;
-          excerpt: string;
-          fields: {
-            slug: string;
-          };
-          frontmatter: {
-            title: string;
-            date: string;
-            tags: string[];
-            image: {
-              childImageSharp: IGatsbyImageData;
-            };
-          };
-        };
-      }[];
-    };
-  };
-}
 
 const IndexPage = ({ data }: BlogQuery) => {
   return (
@@ -38,12 +14,7 @@ const IndexPage = ({ data }: BlogQuery) => {
         <div>
           <ul>
             {data.allMarkdownRemark.edges.map((list) => {
-              const { frontmatter, id, fields, excerpt } = list.node;
-              const { title, date } = frontmatter;
-              const { slug } = fields;
-              const image = getImage(list.node.frontmatter.image?.childImageSharp);
-
-              return <PostList key={id} title={title} date={date} contents={excerpt} slug={slug} image={image} />;
+              return <PostList key={list.node.id} renderPost={list.node} />;
             })}
           </ul>
         </div>

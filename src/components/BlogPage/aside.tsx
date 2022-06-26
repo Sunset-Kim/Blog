@@ -114,7 +114,7 @@ const ASIDE_ITEM = styled.li`
   }
 
   > a {
-    padding: 12px;
+    padding: 8px 16px;
     height: 100%;
     border-radius: 8px;
     justify-content: space-between;
@@ -138,7 +138,7 @@ const TAG_ITEM = styled.li`
     justify-content: space-between;
     align-items: center;
     padding: 8px 8px;
-    background-color: ${({ theme }) => theme.bg[300]};
+    background-color: ${({ theme }) => theme.bg[200]};
 
     &.active {
       background-color: ${({ theme }) => theme.blue[400]};

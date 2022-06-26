@@ -158,11 +158,12 @@ const PAGE = styled.div`
 
   h5 {
     color: ${({ theme }) => theme.bg[800]};
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
   }
 
   span {
+    font-size: 14px;
     font-weight: 500;
     color: ${({ theme }) => theme.bg[700]};
     margin-bottom: 4px;
@@ -171,13 +172,13 @@ const PAGE = styled.div`
   a {
     border-radius: 10px;
     transition: background-color 0.2s;
-    background-color: ${({ theme }) => theme.bg[200]};
+    background-color: ${({ theme }) => theme.bg[100]};
     display: block;
     padding: 16px;
     text-decoration: none;
 
     &:hover {
-      background-color: ${({ theme }) => theme.bg[300]};
+      background-color: ${({ theme }) => theme.bg[200]};
     }
   }
 `;

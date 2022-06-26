@@ -16,7 +16,7 @@ const Toc: React.FC<Props> = ({ tableOfContents }) => {
 export default Toc;
 
 const TOC = styled.aside`
-  padding-top: 25px;
+  padding-top: 40px;
   padding-right: 16px;
   top: 0;
   right: 0;
@@ -28,10 +28,10 @@ const TOC = styled.aside`
   }
 
   > div {
+    position: relative;
     padding: 16px;
-    border-radius: 10px;
-    background-color: ${({ theme }) => theme.bg[200]};
-    border-left: 1px solid ${({ theme }) => theme.blue[400]};
+    background-color: ${({ theme }) => theme.bg[100]};
+    border-left: 2px solid ${({ theme }) => theme.blue[500]};
   }
 
   a.active {
@@ -41,7 +41,9 @@ const TOC = styled.aside`
   ul {
     > li {
       font-size: 15px;
-      margin-bottom: 4px;
+      &:not(:last-of-type) {
+        margin-bottom: 4px;
+      }
       color: ${({ theme }) => theme.bg[800]};
 
       > ul {

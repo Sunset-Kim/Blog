@@ -22,9 +22,11 @@ const TOC = styled.aside`
   right: 0;
   position: sticky;
   height: fit-content;
+
   @media screen and (max-width: 786px) {
     display: none;
   }
+
   > div {
     padding: 16px;
     border-radius: 10px;
@@ -40,6 +42,7 @@ const TOC = styled.aside`
     > li {
       font-size: 15px;
       margin-bottom: 4px;
+      color: ${({ theme }) => theme.bg[800]};
 
       > ul {
         margin-top: 4px;
@@ -47,6 +50,7 @@ const TOC = styled.aside`
 
         > li {
           font-size: 14px;
+          color: ${({ theme }) => theme.bg[600]};
 
           > ul {
             margin-top: 4px;
@@ -54,6 +58,7 @@ const TOC = styled.aside`
 
             > li {
               font-size: 13px;
+              color: ${({ theme }) => theme.bg[500]};
             }
           }
         }

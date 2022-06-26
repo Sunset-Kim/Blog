@@ -1,18 +1,21 @@
 import * as React from "react";
 import Layout from "../components/layouts/Layout";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { BlogQuery } from "types/Qureys";
 import "@styles/reset.css";
 import "@styles/global.css";
-import { getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import PostList from "@components/PostList";
 import styled from "@emotion/styled";
+import recent from "@assets/recent.png";
 
 const IndexPage = ({ data }: BlogQuery) => {
   return (
     <Layout pageTitle="홈">
       <MAIN>
-        <TITLE>최근 글</TITLE>
+        <TITLE>
+          <img src={recent} alt="최근글" />
+          최근 글
+        </TITLE>
         <ul>
           {data.allMarkdownRemark.edges.map((list) => {
             return <PostList key={list.node.id} renderPost={list.node} />;
@@ -30,10 +33,18 @@ const MAIN = styled.main`
 `;
 
 const TITLE = styled.h2`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 60px;
+
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
 `;
 
 export const blogListQuery = graphql`

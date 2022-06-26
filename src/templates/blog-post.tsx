@@ -37,21 +37,21 @@ export default function BlogPost(props: BlogPostProps) {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <PAGE_CONTAINER>
           <PAGE>
-            {pagecontext.next && (
+            {pagecontext.previous && (
               <>
-                <Link to={`/blog${pagecontext.next.fields.slug}`}>
+                <Link to={`/blog${pagecontext.previous.fields.slug}`}>
                   <span>이전페이지</span>
-                  <h5>{pagecontext.next.frontmatter.title}</h5>
+                  <h5>{pagecontext.previous.frontmatter.title}</h5>
                 </Link>
               </>
             )}
           </PAGE>
 
-          <PAGE>
-            {pagecontext.previous && (
-              <Link to={`/blog${pagecontext.previous.fields.slug}`}>
+          <PAGE className="next">
+            {pagecontext.next && (
+              <Link to={`/blog${pagecontext.next.fields.slug}`}>
                 <span>다음페이지</span>
-                <h5>{pagecontext.previous.frontmatter.title}</h5>
+                <h5>{pagecontext.next.frontmatter.title}</h5>
               </Link>
             )}
           </PAGE>
@@ -114,7 +114,7 @@ const CONTENTS = styled.main`
     text-decoration: underline;
   }
   figcaption {
-    margin-bottom: 4px;
+    margin: 8px 0;
     font-size: 14px;
     color: ${({ theme }) => theme.bg[600]};
     text-align: center;
@@ -135,6 +135,12 @@ const PAGE_CONTAINER = styled.div`
 
 const PAGE = styled.div`
   width: 50%;
+
+  &.next {
+    a {
+      text-align: right;
+    }
+  }
 
   &:not(:last-of-type) {
     margin-right: 10px;

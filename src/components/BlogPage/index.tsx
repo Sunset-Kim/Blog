@@ -5,6 +5,9 @@ import PostList from "@components/PostList";
 import Layout from "@components/layouts/Layout";
 import styled from "@emotion/styled";
 import { ArchiveList, TagsList } from "./aside";
+import { StaticImage } from "gatsby-plugin-image";
+import file from "@assets/file.png";
+import tag from "@assets/tag.png";
 
 type InitState = {
   key?: "year" | "tag" | null;
@@ -91,7 +94,10 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
           <TagsList posts={allPosts} activeTag={state.value} />
         </LAYOUT_SIDE>
         <LAYOUT_MAIN>
-          <LAYOUT_TITLE>{state.value === "all" ? "모든글" : state.value}</LAYOUT_TITLE>
+          <LAYOUT_TITLE>
+            <img src={!state.key || state.key === "year" ? file : tag} alt="" />
+            {state.value === "all" ? "모든글" : state.value}
+          </LAYOUT_TITLE>
           <ul>
             {state.renderPost.map((list) => {
               return <PostList key={list.id} renderPost={list} />;
@@ -111,7 +117,7 @@ const LAYOUT_SIDE = styled.aside`
   top: 0;
   min-height: calc(100vh - 73px);
   height: 100%;
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid ${({ theme }) => theme.bg[300]};
   padding: 24px 24px;
   width: 240px;
 
@@ -127,10 +133,17 @@ const LAYOUT_MAIN = styled.main`
 `;
 
 const LAYOUT_TITLE = styled.h2`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 60px;
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
 `;
 
 export default BlogPage;

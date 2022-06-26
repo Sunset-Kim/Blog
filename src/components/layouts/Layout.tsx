@@ -2,6 +2,7 @@ import Header from "@components/Header/Header";
 import styled from "@emotion/styled";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
+import github from "@assets/github.png";
 
 interface LayoutProps {
   pageTitle: string;
@@ -30,13 +31,18 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
           <Link to="/">{site.siteMetadata.title}</Link>
         </TITLE>
 
-        <nav>
+        <NAV>
           <ul>
             <li>
               <Link to="/blog">톺아보기</Link>
             </li>
+            <li>
+              <a href="https://github.com/Sunset-Kim" target="_blank">
+                <img src={github} alt="김민우의깃허브" />
+              </a>
+            </li>
           </ul>
-        </nav>
+        </NAV>
       </Header>
 
       <CONTENTS>{children}</CONTENTS>
@@ -58,11 +64,30 @@ const TITLE = styled.h1`
   &::before {
     content: "";
     position: absolute;
-    top: 100%;
+    top: 85%;
     display: block;
-    width: 110%;
+    width: 120%;
     height: 3px;
     background-color: ${(props) => props.theme.blue[300]};
+  }
+`;
+
+const NAV = styled.nav`
+  ul {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+
+    li {
+      &:not(:last-of-type) {
+        margin-right: 16px;
+      }
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 

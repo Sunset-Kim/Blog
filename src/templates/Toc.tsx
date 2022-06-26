@@ -16,7 +16,9 @@ const Toc: React.FC<Props> = ({ tableOfContents }) => {
 export default Toc;
 
 const TOC = styled.aside`
+  max-width: 300px;
   padding-top: 40px;
+  padding-left: 16px;
   padding-right: 16px;
   top: 0;
   right: 0;

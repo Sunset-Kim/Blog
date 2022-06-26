@@ -74,7 +74,7 @@ const CONTENTS = styled.main`
   flex: 1;
   overflow-x: hidden;
   padding: 80px 40px;
-  line-height: 1.5;
+  line-height: 1.6;
 
   h1,
   h2,
@@ -83,6 +83,7 @@ const CONTENTS = styled.main`
   h5,
   h6 {
     font-weight: 700;
+    line-height: 1;
     margin: 1em 0;
     > a {
       fill: ${({ theme }) => theme.blue[500]};
@@ -110,18 +111,31 @@ const CONTENTS = styled.main`
     margin-block-end: 1em;
   }
 
+  ol,
   ul {
     margin-block-start: 1em;
     margin-block-end: 1em;
-    padding-left: 20px;
+    background-color: aliceblue;
+    padding: 1em 0;
+    padding-left: 2em;
+    padding-right: 1em;
+    border-radius: 4px;
   }
   li {
     list-style-position: inside;
-    list-style: disc;
+    list-style: square;
+    &:not(:last-of-type) {
+      margin-bottom: 0.25em;
+    }
   }
 
   a {
     text-decoration: underline;
+  }
+  figure {
+    img {
+      width: 100%;
+    }
   }
   figcaption {
     margin: 8px 0;
@@ -135,6 +149,13 @@ const CONTENTS = styled.main`
     overflow: auto;
     overflow-wrap: normal;
     white-space: pre;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+  em {
+    font-style: italic;
   }
 `;
 

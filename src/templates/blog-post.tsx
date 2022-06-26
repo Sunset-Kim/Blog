@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import Toc from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
 type PageContext = {
@@ -21,9 +22,11 @@ interface BlogPostProps {
         author: string;
         image: IGatsbyImageData;
       };
+      tableOfContents: string;
       html: string;
     };
   };
+
   pageContext: PageContext;
 }
 
@@ -33,38 +36,45 @@ export default function BlogPost(props: BlogPostProps) {
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
-      <CONTENTS>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <PAGE_CONTAINER>
-          <PAGE>
-            {pagecontext.previous && (
-              <>
-                <Link to={`/blog${pagecontext.previous.fields.slug}`}>
-                  <span>이전페이지</span>
-                  <h5>{pagecontext.previous.frontmatter.title}</h5>
-                </Link>
-              </>
-            )}
-          </PAGE>
+      <LAYOUT_COL_TWO>
+        <CONTENTS>
+          <div id="post" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <PAGE_CONTAINER>
+            <PAGE>
+              {pagecontext.previous && (
+                <>
+                  <Link to={`/blog${pagecontext.previous.fields.slug}`}>
+                    <span>이전페이지</span>
+                    <h5>{pagecontext.previous.frontmatter.title}</h5>
+                  </Link>
+                </>
+              )}
+            </PAGE>
 
-          <PAGE className="next">
-            {pagecontext.next && (
-              <Link to={`/blog${pagecontext.next.fields.slug}`}>
-                <span>다음페이지</span>
-                <h5>{pagecontext.next.frontmatter.title}</h5>
-              </Link>
-            )}
-          </PAGE>
-        </PAGE_CONTAINER>
-      </CONTENTS>
+            <PAGE className="next">
+              {pagecontext.next && (
+                <Link to={`/blog${pagecontext.next.fields.slug}`}>
+                  <span>다음페이지</span>
+                  <h5>{pagecontext.next.frontmatter.title}</h5>
+                </Link>
+              )}
+            </PAGE>
+          </PAGE_CONTAINER>
+        </CONTENTS>
+        <Toc tableOfContents={post.tableOfContents}></Toc>
+      </LAYOUT_COL_TWO>
     </Layout>
   );
 }
 
+const LAYOUT_COL_TWO = styled.div`
+  display: flex;
+`;
 const CONTENTS = styled.main`
+  flex: 1;
   overflow-x: hidden;
   padding: 80px 40px;
-  line-height: 1.5;
+  line-height: 1.6;
 
   h1,
   h2,
@@ -73,6 +83,7 @@ const CONTENTS = styled.main`
   h5,
   h6 {
     font-weight: 700;
+    line-height: 1;
     margin: 1em 0;
     > a {
       fill: ${({ theme }) => theme.blue[500]};
@@ -100,18 +111,31 @@ const CONTENTS = styled.main`
     margin-block-end: 1em;
   }
 
+  ol,
   ul {
     margin-block-start: 1em;
     margin-block-end: 1em;
-    padding-left: 20px;
+    background-color: aliceblue;
+    padding: 1em 0;
+    padding-left: 2em;
+    padding-right: 1em;
+    border-radius: 4px;
   }
   li {
     list-style-position: inside;
-    list-style: disc;
+    list-style: square;
+    &:not(:last-of-type) {
+      margin-bottom: 0.25em;
+    }
   }
 
   a {
     text-decoration: underline;
+  }
+  figure {
+    img {
+      width: 100%;
+    }
   }
   figcaption {
     margin: 8px 0;
@@ -125,6 +149,13 @@ const CONTENTS = styled.main`
     overflow: auto;
     overflow-wrap: normal;
     white-space: pre;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+  em {
+    font-style: italic;
   }
 `;
 
@@ -148,11 +179,12 @@ const PAGE = styled.div`
 
   h5 {
     color: ${({ theme }) => theme.bg[800]};
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
   }
 
   span {
+    font-size: 14px;
     font-weight: 500;
     color: ${({ theme }) => theme.bg[700]};
     margin-bottom: 4px;
@@ -161,13 +193,13 @@ const PAGE = styled.div`
   a {
     border-radius: 10px;
     transition: background-color 0.2s;
-    background-color: ${({ theme }) => theme.bg[200]};
+    background-color: ${({ theme }) => theme.bg[100]};
     display: block;
     padding: 16px;
     text-decoration: none;
 
     &:hover {
-      background-color: ${({ theme }) => theme.bg[300]};
+      background-color: ${({ theme }) => theme.bg[200]};
     }
   }
 `;
@@ -188,6 +220,7 @@ export const query = graphql`
         date(formatString: "MM DD dddd,YYYY", locale: "KO")
         tags
       }
+      tableOfContents(maxDepth: 6)
     }
   }
 `;

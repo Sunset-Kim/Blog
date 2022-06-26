@@ -5,7 +5,6 @@ import PostList from "@components/PostList";
 import Layout from "@components/layouts/Layout";
 import styled from "@emotion/styled";
 import { ArchiveList, TagsList } from "./aside";
-import { StaticImage } from "gatsby-plugin-image";
 import file from "@assets/file.png";
 import tag from "@assets/tag.png";
 
@@ -87,7 +86,7 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
   }, [state.key, state.value]);
 
   return (
-    <Layout pageTitle="안녕">
+    <Layout pageTitle="블로그톺아보기">
       <LAYOUT_COL_2>
         <LAYOUT_SIDE>
           <LAYOUT_SCROLL>

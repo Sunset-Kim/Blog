@@ -76,8 +76,7 @@ const LIST_IMG = styled.div`
   flex: 0 0 150px;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  max-height: 120px;
   margin-right: 20px;
   overflow: hidden;
 

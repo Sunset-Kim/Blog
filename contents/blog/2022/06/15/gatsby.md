@@ -5,7 +5,7 @@ date: 2022-06-15
 layout: post
 tags:
   - gatsby
-featuredImage: ./gatsby.png
+image: ./gatsby.png
 ---
 
 # 굉장히 중요한 테스트를 하고 있다!

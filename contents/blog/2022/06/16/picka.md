@@ -5,5 +5,9 @@ date: 2022-06-15
 layout: post
 tags:
   - gatsby
-featuredImage: ./gatsby.png
+image: ./picka.png
 ---
+
+### 피카츄
+
+![피카츄](./picka.png)

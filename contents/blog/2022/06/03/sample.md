@@ -5,7 +5,6 @@ date: 2022-06-03
 layout: post
 tags:
   - react
-featuredImage: doctor-strange-portal.jpg
 ---
 
 닥터 스트레인지는 전투 중에 불리하면 포탈을 만들어 상황을 용케 빠져나간다.

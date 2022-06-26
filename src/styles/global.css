@@ -9,7 +9,14 @@
   font-weight: 700;
   src: url("../fonts/GodoB.woff2");
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: "Godo";
+  line-height: 1.35;
+}
+
+a {
+  color: inherit;
 }

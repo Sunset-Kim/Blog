@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import github from "@assets/github.png";
+import Footer from "@components/Footer/Footer";
 
 interface LayoutProps {
   pageTitle: string;
@@ -46,6 +47,7 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
       </Header>
 
       <CONTENTS>{children}</CONTENTS>
+      <Footer />
     </WRAPPER>
   );
 };
@@ -92,7 +94,7 @@ const NAV = styled.nav`
 `;
 
 const CONTENTS = styled.div`
-  min-height: calc(100vh - 73px);
+  min-height: calc(100vh - 73px - 80px);
   height: 100%;
   min-width: 340px;
   max-width: 1024px;

@@ -90,8 +90,10 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
     <Layout pageTitle="안녕">
       <LAYOUT_COL_2>
         <LAYOUT_SIDE>
-          <ArchiveList posts={allPosts} activeYear={state.value} />
-          <TagsList posts={allPosts} activeTag={state.value} />
+          <LAYOUT_SCROLL>
+            <ArchiveList posts={allPosts} activeYear={state.value} />
+            <TagsList posts={allPosts} activeTag={state.value} />
+          </LAYOUT_SCROLL>
         </LAYOUT_SIDE>
         <LAYOUT_MAIN>
           <LAYOUT_TITLE>
@@ -113,23 +115,24 @@ const LAYOUT_COL_2 = styled.div`
   display: flex;
 `;
 const LAYOUT_SIDE = styled.aside`
-  position: sticky;
   top: 0;
-  min-height: calc(100vh - 73px);
-  height: 100%;
-  border-right: 1px solid ${({ theme }) => theme.bg[300]};
-  padding: 24px 24px;
+  position: sticky;
+  overflow-y: hidden;
   width: 240px;
+  height: calc(100vh - 60px - 80px);
 
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 const LAYOUT_MAIN = styled.main`
+  border-left: 1px solid ${({ theme }) => theme.bg[300]};
+  min-height: calc(100vh - 60px - 80px);
   flex: 1;
+  width: 100%;
+  height: 100%;
   max-width: 786px;
-  padding: 0 40px;
-  padding-top: 80px;
+  padding: 80px 40px;
 `;
 
 const LAYOUT_TITLE = styled.h2`
@@ -144,6 +147,10 @@ const LAYOUT_TITLE = styled.h2`
     height: 24px;
     margin-right: 8px;
   }
+`;
+
+const LAYOUT_SCROLL = styled.div`
+  padding: 24px;
 `;
 
 export default BlogPage;

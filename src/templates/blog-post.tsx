@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import Toc from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
 type PageContext = {
@@ -21,9 +22,11 @@ interface BlogPostProps {
         author: string;
         image: IGatsbyImageData;
       };
+      tableOfContents: string;
       html: string;
     };
   };
+
   pageContext: PageContext;
 }
 
@@ -33,35 +36,42 @@ export default function BlogPost(props: BlogPostProps) {
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
-      <CONTENTS>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <PAGE_CONTAINER>
-          <PAGE>
-            {pagecontext.previous && (
-              <>
-                <Link to={`/blog${pagecontext.previous.fields.slug}`}>
-                  <span>이전페이지</span>
-                  <h5>{pagecontext.previous.frontmatter.title}</h5>
-                </Link>
-              </>
-            )}
-          </PAGE>
+      <LAYOUT_COL_TWO>
+        <CONTENTS>
+          <div id="post" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <PAGE_CONTAINER>
+            <PAGE>
+              {pagecontext.previous && (
+                <>
+                  <Link to={`/blog${pagecontext.previous.fields.slug}`}>
+                    <span>이전페이지</span>
+                    <h5>{pagecontext.previous.frontmatter.title}</h5>
+                  </Link>
+                </>
+              )}
+            </PAGE>
 
-          <PAGE className="next">
-            {pagecontext.next && (
-              <Link to={`/blog${pagecontext.next.fields.slug}`}>
-                <span>다음페이지</span>
-                <h5>{pagecontext.next.frontmatter.title}</h5>
-              </Link>
-            )}
-          </PAGE>
-        </PAGE_CONTAINER>
-      </CONTENTS>
+            <PAGE className="next">
+              {pagecontext.next && (
+                <Link to={`/blog${pagecontext.next.fields.slug}`}>
+                  <span>다음페이지</span>
+                  <h5>{pagecontext.next.frontmatter.title}</h5>
+                </Link>
+              )}
+            </PAGE>
+          </PAGE_CONTAINER>
+        </CONTENTS>
+        <Toc tableOfContents={post.tableOfContents}></Toc>
+      </LAYOUT_COL_TWO>
     </Layout>
   );
 }
 
+const LAYOUT_COL_TWO = styled.div`
+  display: flex;
+`;
 const CONTENTS = styled.main`
+  flex: 1;
   overflow-x: hidden;
   padding: 80px 40px;
   line-height: 1.5;
@@ -188,6 +198,7 @@ export const query = graphql`
         date(formatString: "MM DD dddd,YYYY", locale: "KO")
         tags
       }
+      tableOfContents(maxDepth: 6)
     }
   }
 `;

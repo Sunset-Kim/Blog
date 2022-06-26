@@ -24,6 +24,7 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
       <title>
         {pageTitle} | {site.siteMetadata.title}
       </title>
+
       <Header>
         <TITLE>
           <Link to="/">{site.siteMetadata.title}</Link>
@@ -44,7 +45,9 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
 };
 
 const WRAPPER = styled.div`
+  min-height: 100vh;
   margin: 0 auto;
+  color: ${({ theme }) => theme.bg[900]};
 `;
 
 const TITLE = styled.h1`
@@ -64,6 +67,8 @@ const TITLE = styled.h1`
 `;
 
 const CONTENTS = styled.div`
+  min-height: calc(100vh - 73px);
+  height: 100%;
   min-width: 340px;
   max-width: 1024px;
   margin: 0 auto;

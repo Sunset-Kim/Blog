@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
 import { Link } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
@@ -21,7 +23,7 @@ const PostList: React.FC<PageListProps> = ({ renderPost }) => {
           <LIST_IMG>{renderImage && <GatsbyImage image={renderImage} alt={title} />}</LIST_IMG>
           <LIST_TEXT>
             <h3>{title}</h3>
-            <span>{date.toString()}</span>
+            <span>{dayjs(date).locale("ko").format("YY년 MM월 DD일 dddd")}</span>
             <p>{excerpt}</p>
           </LIST_TEXT>
         </LIST_ITEM>
@@ -44,18 +46,24 @@ const LIST = styled.li`
 
 const LIST_ITEM = styled.div`
   display: flex;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const LIST_TEXT = styled.div`
   h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 8px;
   }
 
   span {
     display: block;
     margin-bottom: 4px;
+    color: ${({ theme }) => theme.bg[600]};
+    font-size: 14px;
+    font-style: italic;
   }
 
   p {
@@ -65,7 +73,7 @@ const LIST_TEXT = styled.div`
 
 const LIST_IMG = styled.div`
   display: flex;
-  flex: 0 0 100px;
+  flex: 0 0 150px;
   justify-content: center;
   align-items: center;
   width: 100px;
@@ -76,6 +84,14 @@ const LIST_IMG = styled.div`
   img {
     width: 100%;
     display: block;
+  }
+
+  @media screen and (max-width: 500px) {
+    flex: 0 0 150px;
+    height: 150px;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
   }
 `;
 

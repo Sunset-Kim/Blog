@@ -1,5 +1,31 @@
 import type { GatsbyConfig } from "gatsby";
 
+const light = {
+  blue: {
+    300: "#8ecae6",
+    400: "#219ebc",
+    500: "#126782",
+    600: "#023047",
+  },
+  orange: {
+    300: "#ffb703",
+    400: "#fd9e02",
+    500: "#fb8500",
+    600: "#fb9017",
+  },
+  bg: {
+    900: "#212529",
+    800: "#343A40",
+    700: "#495057",
+    600: "#6C757D",
+    500: "#ADB5BD",
+    400: "#CED4DA",
+    300: "#DEE2E6",
+    200: "#E9ECEF",
+    100: "#F8F9FA",
+  },
+};
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: "김민우 블로그",
@@ -14,24 +40,12 @@ const config: GatsbyConfig = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-prismjs-copy-button`,
           {
             resolve: `gatsby-remark-figure-caption`,
             options: { figureClassName: "md-figure" },
           },
           `gatsby-remark-autolink-headers`,
-          {
-            resolve: "gatsby-remark-code-buttons",
-            options: {
-              buttonContainerClass: `customButtonContainerClass`,
-              buttonClass: `customButtonClass`,
-              svgIconClass: `customSvgIconClass`,
-              tooltipText: `Copy`,
-              toasterClass: `customToasterClass`,
-              toasterTextClass: `customToasterTextClass`,
-              toasterText: "Copied!",
-              toasterDuration: 5000,
-            },
-          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -66,34 +80,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-emotion-dark-mode`,
       options: {
-        light: {
-          blue: {
-            300: "#8ecae6",
-            400: "#219ebc",
-            500: "#126782",
-            600: "#023047",
-          },
-          orange: {
-            300: "#ffb703",
-            400: "#fd9e02",
-            500: "#fb8500",
-            600: "#fb9017",
-          },
-        },
-        dark: {
-          blue: {
-            300: "#8ecae6",
-            400: "#219ebc",
-            500: "#126782",
-            600: "#023047",
-          },
-          orange: {
-            300: "#ffb703",
-            400: "#fd9e02",
-            500: "#fb8500",
-            600: "#fb9017",
-          },
-        },
+        light,
+        dark: light,
       },
     },
   ],

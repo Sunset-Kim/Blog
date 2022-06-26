@@ -6,28 +6,39 @@ import "@styles/reset.css";
 import "@styles/global.css";
 import { getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import PostList from "@components/PostList";
+import styled from "@emotion/styled";
 
 const IndexPage = ({ data }: BlogQuery) => {
   return (
-    <main>
-      <Layout pageTitle="홈">
-        <main>
-          <ul>
-            {data.allMarkdownRemark.edges.map((list) => {
-              return <PostList key={list.node.id} renderPost={list.node} />;
-            })}
-          </ul>
-        </main>
-      </Layout>
-    </main>
+    <Layout pageTitle="홈">
+      <MAIN>
+        <TITLE>최근 글</TITLE>
+        <ul>
+          {data.allMarkdownRemark.edges.map((list) => {
+            return <PostList key={list.node.id} renderPost={list.node} />;
+          })}
+        </ul>
+      </MAIN>
+    </Layout>
   );
 };
 
 export default IndexPage;
 
+const MAIN = styled.main`
+  padding: 80px 40px;
+`;
+
+const TITLE = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 60px;
+`;
+
 export const blogListQuery = graphql`
   {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 10) {
       edges {
         node {
           id

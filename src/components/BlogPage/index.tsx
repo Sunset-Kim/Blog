@@ -4,7 +4,7 @@ import { BlogQuery, ObjectValue, RenderPostList } from "types/Qureys";
 import PostList from "@components/PostList";
 import Layout from "@components/layouts/Layout";
 import styled from "@emotion/styled";
-import { ArchiveList } from "./aside";
+import { ArchiveList, TagsList } from "./aside";
 
 type InitState = {
   key?: "year" | "tag" | null;
@@ -60,7 +60,7 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
     const tag = new URLSearchParams(location.search).get("tag");
 
     const key = year ? "year" : tag ? "tag" : null;
-    const value = year ? year : tag ? tag : undefined;
+    const value = year ? year : tag ? tag : "all";
 
     dispatch({
       type: "SET_QUERY",
@@ -72,28 +72,31 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
   }, [location.search]);
 
   useEffect(() => {
-    console.log("asdf");
     dispatch({
       type: "SET_POST",
       payload:
         key === "year"
           ? allPosts.filter((p) => new Date(p.frontmatter.date).getFullYear().toString() === value)
           : key === "tag"
-          ? allPosts.filter((p) => p.frontmatter.tags?.includes(key))
+          ? allPosts.filter((p) => p.frontmatter.tags?.includes(value))
           : allPosts,
     });
-  }, [state.key]);
+  }, [state.key, state.value]);
 
   return (
     <Layout pageTitle="안녕">
       <LAYOUT_COL_2>
         <LAYOUT_SIDE>
-          <ArchiveList posts={allPosts} />
+          <ArchiveList posts={allPosts} activeYear={state.value} />
+          <TagsList posts={allPosts} activeTag={state.value} />
         </LAYOUT_SIDE>
         <LAYOUT_MAIN>
-          {state.renderPost.map((list) => {
-            return <PostList key={list.id} renderPost={list} />;
-          })}
+          <LAYOUT_TITLE>{state.value === "all" ? "모든글" : state.value}</LAYOUT_TITLE>
+          <ul>
+            {state.renderPost.map((list) => {
+              return <PostList key={list.id} renderPost={list} />;
+            })}
+          </ul>
         </LAYOUT_MAIN>
       </LAYOUT_COL_2>
     </Layout>
@@ -104,6 +107,10 @@ const LAYOUT_COL_2 = styled.div`
   display: flex;
 `;
 const LAYOUT_SIDE = styled.aside`
+  position: sticky;
+  top: 0;
+  min-height: calc(100vh - 73px);
+  height: 100%;
   border-right: 1px solid #eaeaea;
   padding: 24px 24px;
   width: 240px;
@@ -115,7 +122,15 @@ const LAYOUT_SIDE = styled.aside`
 const LAYOUT_MAIN = styled.main`
   flex: 1;
   max-width: 786px;
-  padding: 24px;
+  padding: 0 40px;
+  padding-top: 80px;
+`;
+
+const LAYOUT_TITLE = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 60px;
 `;
 
 export default BlogPage;

@@ -111,6 +111,30 @@ const CONTENTS = styled.main`
     margin-block-end: 1em;
   }
 
+  table {
+    border: 1px solid ${({ theme }) => theme.bg[300]};
+    border-collapse: collapse;
+
+    th {
+      padding: 8px 16px;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      background-color: ${({ theme }) => theme.bg[200]};
+    }
+
+    tr {
+      &:nth-of-type(2n) {
+        background-color: ${({ theme }) => theme.bg[100]};
+      }
+    }
+    td {
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid ${({ theme }) => theme.bg[200]};
+    }
+  }
+
   ol,
   ul {
     margin-block-start: 1em;

@@ -1,6 +1,6 @@
 ---
 slug: "/2022/06/16/picka"
-title: "피카츄 블로그"
+title: "피카츄"
 date: 2022-06-15
 layout: post
 tags:

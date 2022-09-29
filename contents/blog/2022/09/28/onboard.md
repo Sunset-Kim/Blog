@@ -20,15 +20,17 @@ image: ./wanted.jpeg
 - SSR
 - NextJS
 
-에 대해서 사전수행하여
-
 # CSR
+
+React, Vue 등 싱글 페이지 어플리케이션에서 많이 사용하는 방식이다. 사용자의 요청에 따라 페이지 렌더링에 필요한 리소스를 요청받아 서버가 리소스를 전송하면 그때 페이지가 그려지는 방식이다.
+따라서 처음 전송받을 리소스의 용량이 크거나 통신이 느려질 경우에는 유저가 보는 브라우저의 첫 페인트 속도가 느려질 수도 있습니다.
+
+하지만 후속 페이지를 만드는데 걸리는 시간은 대부분 짧다. 유저가 요청한 일부분의 데이터를 요청후 갱신해주기 때문에 사용자는 깜빡임 없이 페이지의 컨텐츠를 이용할 수 있다. 또 한번 받은 리소스를 캐싱해 놓는다면 다음번 접속때는 더 빠르게 서비스를 이용할 수 있습니다.
+
+CSR의 가장 큰단점으로 SEO(Search Engine Optimiztion) 꼽을 수 있는데, 사용자는 빈 html에 js 파일을 받아 렌더링 하기 때문에 검색엔진 js를 구동해서 크롤링하는 봇이 아닌 경우에는 컨텐츠를 제대로 읽을 수 없다.
 
 # SSR
 
 # NextJS
 
 ## 참고
-
-- [Axios - 인터셉터](https://axios-http.com/kr/docs/interceptors)
-- [zig song님의 포스트중 aixos관련내용](https://zigsong.github.io/2021/08/19/wtc-lv3-log-1/#%EC%9A%B0%ED%85%8C%EC%BD%94-Lv3-%ED%95%99%EC%8A%B5%EB%A1%9C%EA%B7%B8-%EC%82%AC%EC%9A%A9-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%A0%95%EB%A6%AC)

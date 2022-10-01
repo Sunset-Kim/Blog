@@ -8,17 +8,19 @@ tags:
   - nextjs
   - SSR
   - CSR
-image: ./wanted.jpeg
+image: ./wanted.png
 ---
 
-# 들어가는말
+# 원티드 프리온보딩 챌린지를 신정하다.
+
+회사 프로젝트를 nextjs로 빌드하고 있다. React에서 B2B Sass 프로젝트를 진행해온터라 그다지 필요하지 않았던 SSR 기술이 B2C 서비스를 시작하며 필요하게 되었다. 그러던 와중 프리온보딩 챌린지를 발견하고 마지막날(사실 회사프로젝트도 이번주가 마감이다.) 급하게 신청서를 넣고 사전과제를 참여하는 중이다.
 
 ![원티드프리온보딩 챌린지](./wanted.png)
-회사 프로젝트를 nextjs로 빌드하고 있다. React에서 B2B Sass 프로젝트를 진행해온터라 그다지 필요하지 않았던 SSR 기술이 B2C 서비스를 시작하며 필요하게 되었다. 그러던 와중 프리온보딩 챌린지를 발견하고 마지막날(사실 회사프로젝트도 이번주가 마감이다.) 급하게 신청서를 넣고 사전과제를 참여하는 중이다.
 
 - CSR
 - SSR
 - NextJS
+- NextJS를 실행하면 어떤 파일이 실행되나?
 
 # CSR
 
@@ -37,9 +39,9 @@ SSR은 서버에서 사용자에게 보여줄 페이지를 모두 구성하여 �
 
 # NextJS
 
-Nextjs는 위와 같은 SSR, CSR의 문제점을 해결해기 위해 위 두가지 방법을 적절하게 섞고 거기에 SSG(Static Site Generator)까지 잘 섞은 React 기반의 프레임워크이다.
+Nextjs는 위와 같은 SSR, CSR의 문제점을 해결해기 위해 위 두가지 방법을 적절하게 섞고 거기에 SSG(Static Site Generator)까지 잘 섞은 React 기반의 프레임워크이다. 이러한 rendering을 Universal SSR이라고 부르기도 한다.
 
-## yarn start 시 실행되는 코드들
+# NextJS yarn start 시 실행되는 코드들
 
 yarn start는 단독으로 실행되지 않는다. yarn start 라는 cli 명령어가 제대로 작동하기 위해서는 우선적으로 nextjs 프로젝트를 yarn build 를 통해 컴파일을 완료해야한다. 그 후에 yarn start라는 명령어는 해당 프로젝트의 build된 파일을 실행하는 코드이다.
 
@@ -51,7 +53,7 @@ yarn start (next start)를 실행하면
 
 가 실행된다.
 
-각각의 코드는 자체적으로 http server를 만들고 next Instance를 만들어서 client의 요청에 따라 next instance에 있는 다양한 종류의 render 함수를 호출한다. render 대표적으로 app Container dom을 만들고 document ctx를 만들어서 공통적으로 전송하며 사용자가 custom한 \_app, \_document가 없다면 default로 작성해 놓은 코드를 바탕으로 추가로 dom트리를 구성하여 client로 응답을 보낸다.
+각각의 코드는 자체적으로 http server를 만들고 next Instance를 만들어서 client의 요청 이벤트를 처리하는 handler를 생성한다. 그리고 요청에 따라 next instance에 있는 다양한 종류의 render 함수 또는 servier API를 호출한다. render 대표적으로 app Container dom을 만들고 document ctx를 만들어서 공통적으로 전송하며 사용자가 custom 하게 \_app, \_document를 생성하지 않았다면 next instance에서 default로 작성해 놓은 코드를 바탕으로 Dom tree를 구성하여 client의 요청에 응답한다.
 
 ## 참고
 

@@ -31,6 +31,30 @@ CSR의 가장 큰단점으로 SEO(Search Engine Optimiztion) 꼽을 수 있는�
 
 # SSR
 
+SSR은 서버에서 사용자에게 보여줄 페이지를 모두 구성하여 사용자에서 페이지를 전달하는 방식이다. SSR을 사용하면 모든 데이터가 매핑된 서비스 페이지를 클라이언트에게 바로 보여줄 수 있다. 서버를 이용해서 페이지를 구성하기 때문에 클라이언트에서 구성하는 CSR보다 페이지를 구성하는 속도는 늦어지지만 전체적으로 사용자에게 보여주는 콘텐츠 구성이 완료되는 시점은 빨라진다는 장점이 있다. 또한 SSR은 HTML문서 자체를 가져오므로 SEO에 유리한 측면을 가진다.
+
+반면에 SSR은 Blinking Issue (사용자가 새로고침을 했을때 전체 웹사이트를 다시 서버에 받아오므로 화면이 사라짐)가 있을 수 있고, 서버가 과부화 될 수 있다는 단점을 가진다. 마지막으로 가장 큰 단점은 TTV(Time to view)와 TTI (Time to Interact)인데 view가 그려진 시점과 사용자가 실제로 interaction을 할 수 있는 시간차이가 날 수 있다.
+
 # NextJS
 
+Nextjs는 위와 같은 SSR, CSR의 문제점을 해결해기 위해 위 두가지 방법을 적절하게 섞고 거기에 SSG(Static Site Generator)까지 잘 섞은 React 기반의 프레임워크이다.
+
+## yarn start 시 실행되는 코드들
+
+yarn start는 단독으로 실행되지 않는다. yarn start 라는 cli 명령어가 제대로 작동하기 위해서는 우선적으로 nextjs 프로젝트를 yarn build 를 통해 컴파일을 완료해야한다. 그 후에 yarn start라는 명령어는 해당 프로젝트의 build된 파일을 실행하는 코드이다.
+
+yarn start (next start)를 실행하면
+
+1. cli/nextstart.ts [nextstart](https://github.com/vercel/next.js/blob/canary/packages/next/cli/next-start.ts)
+2. server/lib/start-server.ts [start-server](https://github.com/vercel/next.js/blob/canary/packages/next/server/lib/start-server.ts)
+3. next.ts [next.ts](https://github.com/vercel/next.js/blob/canary/packages/next/server/next.ts)
+
+가 실행된다.
+
+각각의 코드는 자체적으로 http server를 만들고 next Instance를 만들어서 client의 요청에 따라 next instance에 있는 다양한 종류의 render 함수를 호출한다. render 대표적으로 app Container dom을 만들고 document ctx를 만들어서 공통적으로 전송하며 사용자가 custom한 \_app, \_document가 없다면 default로 작성해 놓은 코드를 바탕으로 추가로 dom트리를 구성하여 client로 응답을 보낸다.
+
 ## 참고
+
+- [nextjs 공식문서](https://nextjs.org/docs/getting-started)
+- [nextjs 공식 github](https://github.com/vercel/next.js)
+- [드림코딩 앨리 SSR](https://www.youtube.com/watch?v=iZ9csAfU5Os)

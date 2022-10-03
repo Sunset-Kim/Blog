@@ -11,7 +11,7 @@ tags:
 image: ./wanted.png
 ---
 
-# 원티드 프리온보딩 챌린지를 신정하다.
+# 원티드 프리온보딩 챌린지를 신청하다.
 
 회사 프로젝트를 nextjs로 빌드하고 있다. React에서 B2B Sass 프로젝트를 진행해온터라 그다지 필요하지 않았던 SSR 기술이 B2C 서비스를 시작하며 필요하게 되었다. 그러던 와중 프리온보딩 챌린지를 발견하고 마지막날(사실 회사프로젝트도 이번주가 마감이다.) 급하게 신청서를 넣고 사전과제를 참여하는 중이다.
 
@@ -47,9 +47,9 @@ yarn start는 단독으로 실행되지 않는다. yarn start 라는 cli 명령�
 
 yarn start (next start)를 실행하면
 
-1. cli/nextstart.ts [nextstart](https://github.com/vercel/next.js/blob/canary/packages/next/cli/next-start.ts)
-2. server/lib/start-server.ts [start-server](https://github.com/vercel/next.js/blob/canary/packages/next/server/lib/start-server.ts)
-3. next.ts [next.ts](https://github.com/vercel/next.js/blob/canary/packages/next/server/next.ts)
+1. cli command 입력 `yarn start` [[nextstart.ts]](https://github.com/vercel/next.js/blob/canary/packages/next/cli/next-start.ts)
+2. 서버실행 `server/lib/start-server.ts` [[start-server]](https://github.com/vercel/next.js/blob/canary/packages/next/server/lib/start-server.ts)
+3. Next Instance 생성 [[next.ts]](https://github.com/vercel/next.js/blob/canary/packages/next/server/next.ts)
 
 가 실행된다.
 

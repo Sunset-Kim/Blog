@@ -10,14 +10,14 @@ image: ./tanstack.jpeg
 
 # 상태관리 트렌드의 변화
 
-[tanstack query](./tanstack.jpeg)
+![tanstack query](tanstack.jpeg)
 
 지난 3월 사내에서 React query 관련한 세션을 진행한 이후 프론트엔드의 개발환경도 빠르게 변한 것 같다. 이제는 신입개발자도 서버상태와 클라이언트 자체의 상태를 구분해야 한다고 말할 정도다. react query를 필두로한 서버상태를 관리하는 라이브러리들이 많아 졌고 swr 같은 라이벌도 굉장히 작은 용량을 앞세워 장점을 어필하고 있다. redux도 트렌드에 맞게 toolkit-query를 업데이트하며 트렌드를 반영하고 있다.
 그 중 대장격인 tanstack query를 이용하며 팀원들의 잘못된 사례를 소개하고 좋았던 use case를 소개하려고 한다.
 
 # 관리하고 있는 query 가 썩었다는 사실을 알려주자
 
-[넌 트래쉬야](./trash.gif)
+![넌 트래쉬야 출처 - giphy(https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif)](https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif)
 
 과거 mutaion 할때마다 직접 queryClient의 데이터에 접근해서 set하는 방식을 쓰는 방식으로 코드를 짜는 팀원이 있었다. 해당 데이터에 여러유저가 접근할 경우 자기자신이 변경한 데이터만 볼 수 있게 되는 버그가 발생해서 수정을 한 적이 있는 데, 공식문서의 [Invalidations from Mutations](https://tanstack.com/query/v4/docs/react/guides/invalidations-from-mutations) 섹션을 보지 않은 것 같았다. mutaion을 하고 관련된 데이터를 수동으로 invalid 시켜줌으로 새로운 데이터를 받을 수 있었다.
 

@@ -181,7 +181,7 @@ type OptionalAddress = z.infer<typeof OptionalAddress>;
 
 # 참고
 
-[npm trends - ajv vs joi vs zod vs yup](https://npmtrends.com/ajv-vs-joi-vs-yup-vs-zod)
-[다른 typescript validation shema 비교 - zod vs yup vs joi vs io-ts](https://egghead.io/blog/zod-vs-yup-vs-joi-vs-io-ts-for-creating-runtime-typescript-validation-schemas)
-[zod 공식문서](https://zod.dev/)
-[30분만에 배우는 zod](https://www.youtube.com/watch?v=L6BE-U3oy80&t=35s)
+- [npm trends - ajv vs joi vs zod vs yup](https://npmtrends.com/ajv-vs-joi-vs-yup-vs-zod)
+- [다른 typescript validation shema 비교 - zod vs yup vs joi vs io-ts](https://egghead.io/blog/zod-vs-yup-vs-joi-vs-io-ts-for-creating-runtime-typescript-validation-schemas)
+- [zod 공식문서](https://zod.dev/)
+- [30분만에 배우는 zod](https://www.youtube.com/watch?v=L6BE-U3oy80&t=35s)

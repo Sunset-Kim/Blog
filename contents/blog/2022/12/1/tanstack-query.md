@@ -210,6 +210,6 @@ react query를 사용하면서 자주하는 실수들과 좀 더 좋은 방식�
 
 # 참고
 
-[tkdodo의 블로그](https://tkdodo.eu/blog/)
-[kakao tech - query 적용기](https://tech.kakao.com/2022/06/13/react-query/)
-[tanstack query](https://tanstack.com/query/v4/docs/react/overview)
+- [tkdodo의 블로그](https://tkdodo.eu/blog/)
+- [kakao tech - query 적용기](https://tech.kakao.com/2022/06/13/react-query/)
+- [tanstack query](https://tanstack.com/query/v4/docs/react/overview)

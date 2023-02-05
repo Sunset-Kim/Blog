@@ -2,7 +2,7 @@
 slug: "/2023/01/27/tailwind.md"
 title: "내가 tailwind를 프로젝트에 적용한 방법"
 date: 2023-01-27
-image: ./sanitize.gif
+image: ./taliwind.jpeg
 layout: post
 tags:
   - tailwind

@@ -17,7 +17,7 @@ const IndexPage = ({ data }: BlogQuery) => {
           최근 글
         </TITLE>
         <ul>
-          {data.allMarkdownRemark.edges.map((list) => {
+          {data.allMdx.edges.map((list) => {
             return <PostList key={list.node.id} renderPost={list.node} />;
           })}
         </ul>
@@ -49,14 +49,14 @@ const TITLE = styled.h2`
 
 export const blogListQuery = graphql`
   {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, limit: 10) {
+    allMdx(sort: { frontmatter: { date: DESC } }, limit: 10) {
       edges {
         node {
           id
           fields {
             slug
           }
-          excerpt(pruneLength: 200, format: PLAIN, truncate: true)
+          excerpt(pruneLength: 200)
           frontmatter {
             title
             date(formatString: "YYYY-MM-DD", locale: "ko")

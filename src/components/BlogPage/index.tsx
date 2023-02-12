@@ -52,7 +52,7 @@ const reducer = (state: InitState, action: Action): InitState => {
 
 const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) => {
   const { data, location } = props;
-  const allPosts = data.allMarkdownRemark.edges.map((edge) => edge.node);
+  const allPosts = data.allMdx.edges.map((edge) => edge.node);
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const { key, value } = state;

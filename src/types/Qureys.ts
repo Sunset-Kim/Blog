@@ -2,7 +2,7 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export interface BlogQuery {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: {
         node: RenderPostList;
       }[];

@@ -11,9 +11,10 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
           `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,
@@ -43,8 +44,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/contents/blog`,
       },
     },
-
-    `gatsby-plugin-web-font-loader`,
     `gatsby-plugin-emotion`,
   ],
 };

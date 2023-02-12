@@ -1,16 +1,44 @@
 import styled from "@emotion/styled";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 
+export type TOC = {
+  title: string;
+  url: string;
+  items?: TOC[];
+};
+
+export function isNotNullOrUndefined<T>(input: null | undefined | T): input is T {
+  return input != null;
+}
 interface Props {
-  tableOfContents: string;
+  tableOfContents?: TOC["items"];
+}
+
+function getTOC(tocs: TOC[]) {
+  return tocs.map((toc) => <ol key={toc.url}>{getTOCLink(toc)}</ol>);
+}
+
+function getTOCLink(toc: TOC, depth: number = 1) {
+  if (depth > 6) return;
+  let result = [];
+  const { title, url, items } = toc;
+  const link = (
+    <li key={url}>
+      <a href={url}>{title}</a>
+    </li>
+  );
+  result.push(link);
+
+  if (items) {
+    const child = items.flatMap((toc) => getTOCLink(toc, depth + 1)).filter(isNotNullOrUndefined);
+    result = result.concat(<ol key={title + "list"}>{child}</ol>);
+  }
+
+  return result;
 }
 
 const Toc: React.FC<Props> = ({ tableOfContents }) => {
-  return (
-    <TOC id="post-toc">
-      <div dangerouslySetInnerHTML={{ __html: tableOfContents }}></div>
-    </TOC>
-  );
+  return <TOC id="post-toc">{tableOfContents && getTOC(tableOfContents)}</TOC>;
 };
 
 export default Toc;

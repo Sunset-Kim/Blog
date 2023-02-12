@@ -1,9 +1,8 @@
-import React from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
-import Toc from "./Toc";
+import Toc, { TOC } from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
 type PageContext = {
@@ -15,30 +14,30 @@ type PageContext = {
 };
 interface BlogPostProps {
   data: {
-    markdownRemark: {
+    mdx: {
       frontmatter: {
         title: string;
         datePublished: string;
         author: string;
         image: IGatsbyImageData;
       };
-      tableOfContents: string;
+      tableOfContents: Pick<TOC, "items">;
       html: string;
     };
   };
-
   pageContext: PageContext;
+  children: React.ReactNode;
 }
 
-export default function BlogPost(props: BlogPostProps) {
-  const post = props.data.markdownRemark;
-  const pagecontext = props.pageContext;
+export default function BlogPost({ data, pageContext, children }: BlogPostProps) {
+  const post = data.mdx;
+  const pagecontext = pageContext;
 
   return (
     <Layout pageTitle={post.frontmatter.title}>
       <LAYOUT_COL_TWO>
         <CONTENTS>
-          <div id="post" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <section itemProp="articleBody">{children}</section>
           <PAGE_CONTAINER>
             <PAGE>
               {pagecontext.previous && (
@@ -61,7 +60,7 @@ export default function BlogPost(props: BlogPostProps) {
             </PAGE>
           </PAGE_CONTAINER>
         </CONTENTS>
-        <Toc tableOfContents={post.tableOfContents}></Toc>
+        <Toc tableOfContents={post.tableOfContents.items} />
       </LAYOUT_COL_TWO>
     </Layout>
   );
@@ -223,8 +222,7 @@ const PAGE = styled.div`
 
 export const query = graphql`
   query ($slug: String) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         image {
           childImageSharp {

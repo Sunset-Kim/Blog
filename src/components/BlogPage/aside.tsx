@@ -1,8 +1,8 @@
-import React from "react";
-import _ from "lodash";
-import { RenderPostList } from "types/Qureys";
+import { RenderPostList } from "@/types/Qureys";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
+import _ from "lodash";
+import React from "react";
 import { Params, Path } from "../../constants";
 
 type ArchiveListProps = {

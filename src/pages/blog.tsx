@@ -1,5 +1,5 @@
-import BlogPage from "@components/BlogPage";
-import { graphql, Link, withPrefix } from "gatsby";
+import BlogPage from "@/components/BlogPage";
+import { graphql } from "gatsby";
 
 export default BlogPage;
 

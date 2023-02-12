@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 
 const Footer = () => {
   return <WRAPPER>© 김민우 2022</WRAPPER>;

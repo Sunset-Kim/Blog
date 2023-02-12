@@ -1,7 +1,8 @@
-import { graphql, Link } from "gatsby";
-import Layout from "@components/layouts/Layout";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { Header, WithHeader } from "@/feature/layouts";
+
 import styled from "@emotion/styled";
+import { graphql, Link } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import Toc, { TOC } from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
@@ -34,7 +35,7 @@ export default function BlogPost({ data, pageContext, children }: BlogPostProps)
   const pagecontext = pageContext;
 
   return (
-    <Layout pageTitle={post.frontmatter.title}>
+    <WithHeader header={<Header />} pageTitle={post.frontmatter.title}>
       <LAYOUT_COL_TWO>
         <CONTENTS>
           <section itemProp="articleBody">{children}</section>
@@ -62,7 +63,7 @@ export default function BlogPost({ data, pageContext, children }: BlogPostProps)
         </CONTENTS>
         <Toc tableOfContents={post.tableOfContents.items} />
       </LAYOUT_COL_TWO>
-    </Layout>
+    </WithHeader>
   );
 }
 

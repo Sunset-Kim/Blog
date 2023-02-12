@@ -1,12 +1,13 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { PageProps } from "gatsby";
-import { BlogQuery, ObjectValue, RenderPostList } from "types/Qureys";
-import PostList from "@components/PostList";
-import Layout from "@components/layouts/Layout";
+import PostList from "@/components/PostList";
+import { Header, WithHeader } from "@/feature/layouts";
+
+import file from "@/assets/file.png";
+import tag from "@/assets/tag.png";
+import { BlogQuery, ObjectValue, RenderPostList } from "@/types/Qureys";
 import styled from "@emotion/styled";
+import { PageProps } from "gatsby";
+import React, { useEffect, useReducer } from "react";
 import { ArchiveList, TagsList } from "./aside";
-import file from "@assets/file.png";
-import tag from "@assets/tag.png";
 
 type InitState = {
   key?: "year" | "tag" | null;
@@ -86,7 +87,7 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
   }, [state.key, state.value]);
 
   return (
-    <Layout pageTitle="블로그톺아보기">
+    <WithHeader header={<Header />} pageTitle="블로그톺아보기">
       <LAYOUT_COL_2>
         <LAYOUT_SIDE>
           <LAYOUT_SCROLL>
@@ -106,7 +107,7 @@ const BlogPage: React.FC<PageProps<ObjectValue<BlogQuery, "data">>> = (props) =>
           </ul>
         </LAYOUT_MAIN>
       </LAYOUT_COL_2>
-    </Layout>
+    </WithHeader>
   );
 };
 

@@ -1,15 +1,13 @@
-import * as React from "react";
-import Layout from "../components/layouts/Layout";
-import { graphql } from "gatsby";
-import { BlogQuery } from "types/Qureys";
-
-import PostList from "@components/PostList";
+import recent from "@/assets/recent.png";
+import PostList from "@/components/PostList";
+import { Header, WithHeader } from "@/feature/layouts";
+import { BlogQuery } from "@/types/Qureys";
 import styled from "@emotion/styled";
-import recent from "@assets/recent.png";
+import { graphql } from "gatsby";
 
 const IndexPage = ({ data }: BlogQuery) => {
   return (
-    <Layout pageTitle="홈">
+    <WithHeader header={<Header />} pageTitle="홈">
       <MAIN>
         <TITLE>
           <img src={recent} alt="최근글" />
@@ -21,7 +19,7 @@ const IndexPage = ({ data }: BlogQuery) => {
           })}
         </ul>
       </MAIN>
-    </Layout>
+    </WithHeader>
   );
 };
 

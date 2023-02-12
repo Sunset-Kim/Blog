@@ -1,9 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  line-height: 1.35;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 a {
   color: inherit;

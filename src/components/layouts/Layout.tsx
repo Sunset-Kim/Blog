@@ -4,6 +4,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import github from "@assets/github.png";
 import Footer from "@components/Footer/Footer";
+import { GlobalStyles } from "twin.macro";
 
 interface LayoutProps {
   pageTitle: string;
@@ -23,6 +24,7 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
 
   return (
     <WRAPPER>
+      <GlobalStyles />
       <title>
         {pageTitle} | {site.siteMetadata.title}
       </title>

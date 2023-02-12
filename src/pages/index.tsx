@@ -2,8 +2,7 @@ import * as React from "react";
 import Layout from "../components/layouts/Layout";
 import { graphql } from "gatsby";
 import { BlogQuery } from "types/Qureys";
-import "@styles/reset.css";
-import "@styles/global.css";
+
 import PostList from "@components/PostList";
 import styled from "@emotion/styled";
 import recent from "@assets/recent.png";

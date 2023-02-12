@@ -44,7 +44,8 @@ const config: GatsbyConfig = {
         path: `${__dirname}/contents/blog`,
       },
     },
-    `gatsby-plugin-emotion`,
+    "gatsby-plugin-emotion",
+    "gatsby-plugin-postcss",
   ],
 };
 

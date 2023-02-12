@@ -13,7 +13,6 @@ const WRAPPER = styled.footer`
   justify-content: center;
   align-items: center;
   padding: 30px;
-  border-top: 1px solid ${({ theme }) => theme.bg[300]};
 `;
 
 export default Footer;

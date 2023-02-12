@@ -32,8 +32,6 @@ const TOC = styled.aside`
   > div {
     position: relative;
     padding: 16px;
-    background-color: ${({ theme }) => theme.bg[100]};
-    border-left: 2px solid ${({ theme }) => theme.blue[500]};
   }
 
   a.active {
@@ -46,7 +44,6 @@ const TOC = styled.aside`
       &:not(:last-of-type) {
         margin-bottom: 4px;
       }
-      color: ${({ theme }) => theme.bg[800]};
 
       > ul {
         margin-top: 4px;
@@ -54,7 +51,6 @@ const TOC = styled.aside`
 
         > li {
           font-size: 14px;
-          color: ${({ theme }) => theme.bg[600]};
 
           > ul {
             margin-top: 4px;
@@ -62,7 +58,6 @@ const TOC = styled.aside`
 
             > li {
               font-size: 13px;
-              color: ${({ theme }) => theme.bg[500]};
             }
           }
         }

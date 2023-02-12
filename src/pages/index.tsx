@@ -49,7 +49,7 @@ const TITLE = styled.h2`
 
 export const blogListQuery = graphql`
   {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 10) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, limit: 10) {
       edges {
         node {
           id

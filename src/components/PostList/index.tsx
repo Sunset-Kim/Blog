@@ -61,7 +61,6 @@ const LIST_TEXT = styled.div`
   span {
     display: block;
     margin-bottom: 4px;
-    color: ${({ theme }) => theme.bg[600]};
     font-size: 14px;
     font-style: italic;
   }

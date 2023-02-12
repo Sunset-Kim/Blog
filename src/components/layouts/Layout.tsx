@@ -55,7 +55,6 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
 const WRAPPER = styled.div`
   min-height: 100vh;
   margin: 0 auto;
-  color: ${({ theme }) => theme.bg[900]};
 `;
 
 const TITLE = styled.h1`
@@ -70,7 +69,6 @@ const TITLE = styled.h1`
     display: block;
     width: 120%;
     height: 3px;
-    background-color: ${(props) => props.theme.blue[300]};
   }
 `;
 

@@ -86,7 +86,6 @@ const CONTENTS = styled.main`
     line-height: 1;
     margin: 1em 0;
     > a {
-      fill: ${({ theme }) => theme.blue[500]};
     }
   }
 
@@ -112,7 +111,7 @@ const CONTENTS = styled.main`
   }
 
   table {
-    border: 1px solid ${({ theme }) => theme.bg[300]};
+    border: 1px solid;
     border-collapse: collapse;
 
     th {
@@ -120,18 +119,15 @@ const CONTENTS = styled.main`
       font-weight: bold;
       text-align: center;
       vertical-align: middle;
-      background-color: ${({ theme }) => theme.bg[200]};
     }
 
     tr {
       &:nth-of-type(2n) {
-        background-color: ${({ theme }) => theme.bg[100]};
       }
     }
     td {
       font-size: 14px;
       padding: 8px 16px;
-      border: 1px solid ${({ theme }) => theme.bg[200]};
     }
   }
 
@@ -164,7 +160,6 @@ const CONTENTS = styled.main`
   figcaption {
     margin: 8px 0;
     font-size: 14px;
-    color: ${({ theme }) => theme.bg[600]};
     text-align: center;
     font-style: italic;
   }
@@ -202,7 +197,6 @@ const PAGE = styled.div`
   }
 
   h5 {
-    color: ${({ theme }) => theme.bg[800]};
     font-size: 16px;
     margin: 0;
   }
@@ -210,34 +204,31 @@ const PAGE = styled.div`
   span {
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.bg[700]};
+
     margin-bottom: 4px;
   }
 
   a {
     border-radius: 10px;
     transition: background-color 0.2s;
-    background-color: ${({ theme }) => theme.bg[100]};
+
     display: block;
     padding: 16px;
     text-decoration: none;
 
     &:hover {
-      background-color: ${({ theme }) => theme.bg[200]};
     }
   }
 `;
 
 export const query = graphql`
-  query ($slug: String!) {
+  query ($slug: String) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         image {
           childImageSharp {
-            fluid(maxWidth: 640, quality: 85) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: CONSTRAINED, width: 640)
           }
         }
         title

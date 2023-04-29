@@ -34,6 +34,8 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-image",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
@@ -41,10 +43,6 @@ const config: GatsbyConfig = {
       options: {
         plugins: [
           `gatsby-remark-prismjs-copy-button`,
-          {
-            resolve: `gatsby-remark-figure-caption`,
-            options: { figureClassName: "md-figure" },
-          },
           `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,

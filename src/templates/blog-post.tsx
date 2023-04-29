@@ -228,23 +228,19 @@ const PAGE = styled.div`
   }
 `;
 
-export const query = graphql`
-  query ($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        image {
-          childImageSharp {
-            fluid(maxWidth: 640, quality: 85) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+export const query = graphql`query ($slug: String!) {
+  markdownRemark(fields: {slug: {eq: $slug}}) {
+    html
+    frontmatter {
+      image {
+        childImageSharp {
+          gatsbyImageData(width: 640, quality: 85, layout: CONSTRAINED)
         }
-        title
-        date(formatString: "MM DD dddd,YYYY", locale: "KO")
-        tags
       }
-      tableOfContents(maxDepth: 6)
+      title
+      date(formatString: "MM DD dddd,YYYY", locale: "KO")
+      tags
     }
+    tableOfContents(maxDepth: 6)
   }
-`;
+}`;

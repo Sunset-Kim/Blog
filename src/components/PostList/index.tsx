@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { Link } from "gatsby";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { RenderPostList } from "types/Qureys";
 

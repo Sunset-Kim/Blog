@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
-import { IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import { graphql, Link } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+import React from "react";
 import Toc from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
@@ -235,9 +235,7 @@ export const query = graphql`
       frontmatter {
         image {
           childImageSharp {
-            fluid(maxWidth: 640, quality: 85) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(width: 640, quality: 85, layout: CONSTRAINED)
           }
         }
         title

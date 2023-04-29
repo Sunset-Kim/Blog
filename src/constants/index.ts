@@ -1,3 +1,5 @@
+export const REPO_NAME = "Sunset-Kim/Blog";
+
 export const Path = {
   Home: "/",
   Blog: "/blog",

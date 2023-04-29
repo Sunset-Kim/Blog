@@ -1,8 +1,8 @@
-import React from "react";
-import _ from "lodash";
-import { RenderPostList } from "types/Qureys";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
+import _ from "lodash";
+import React from "react";
+import { RenderPostList } from "types/Qureys";
 import { Params, Path } from "../../constants";
 
 type ArchiveListProps = {
@@ -16,16 +16,16 @@ type TagListProps = {
 };
 
 export const ArchiveList: React.FC<ArchiveListProps> = ({ posts, activeYear }) => {
-  let postsGroubyYear: { [year: string]: RenderPostList[] } = {};
+  let postsGroupByYear: { [year: string]: RenderPostList[] } = {};
 
   posts.forEach((post) => {
     const year = new Date(post.frontmatter.date).getFullYear();
-    postsGroubyYear[year] = postsGroubyYear[year] || [];
-    postsGroubyYear[year].push(post);
+    postsGroupByYear[year] = postsGroupByYear[year] || [];
+    postsGroupByYear[year].push(post);
   });
 
   const postsSortByYear = _.orderBy(
-    Object.entries(postsGroubyYear).map(([year, posts]) => ({
+    Object.entries(postsGroupByYear).map(([year, posts]) => ({
       year,
       posts,
     })),
@@ -58,18 +58,18 @@ export const ArchiveList: React.FC<ArchiveListProps> = ({ posts, activeYear }) =
 };
 
 export const TagsList: React.FC<TagListProps> = ({ posts, activeTag }) => {
-  let postsGroubyTag: { [tag: string]: RenderPostList[] } = {};
+  let postsGroupByTag: { [tag: string]: RenderPostList[] } = {};
 
   posts.forEach((post) => {
     const tags = post.frontmatter.tags;
     tags.forEach((tag) => {
-      postsGroubyTag[tag] = postsGroubyTag[tag] || [];
-      postsGroubyTag[tag].push(post);
+      postsGroupByTag[tag] = postsGroupByTag[tag] || [];
+      postsGroupByTag[tag].push(post);
     });
   });
 
   const postsSortByTagCount = _.orderBy(
-    Object.entries(postsGroubyTag).map(([tag, posts]) => ({ tag, posts })),
+    Object.entries(postsGroupByTag).map(([tag, posts]) => ({ tag, posts })),
     (entry) => entry.posts.length,
     "desc"
   );

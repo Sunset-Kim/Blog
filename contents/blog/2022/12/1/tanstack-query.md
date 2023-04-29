@@ -17,6 +17,10 @@ image: ./tanstack.jpeg
 
 # 관리하고 있는 query 가 썩었다는 사실을 알려주자
 
+<figure align="center">
+  <img src="https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif" alt="넌 트래쉬야"/>
+  <figcaption>넌 트래쉬야 출처 - giphy(https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif)</figcaption>
+</figure>
 ![넌 트래쉬야 출처 - giphy(https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif)](https://media.giphy.com/media/vz5W5CZUS0eBRIfJV5/giphy.gif)
 
 과거 mutaion 할때마다 직접 queryClient의 데이터에 접근해서 set하는 방식을 쓰는 방식으로 코드를 짜는 팀원이 있었다. 해당 데이터에 여러유저가 접근할 경우 자기자신이 변경한 데이터만 볼 수 있게 되는 버그가 발생해서 수정을 한 적이 있는 데, 공식문서의 [Invalidations from Mutations](https://tanstack.com/query/v4/docs/react/guides/invalidations-from-mutations) 섹션을 보지 않은 것 같았다. mutaion을 하고 관련된 데이터를 수동으로 invalid 시켜줌으로 새로운 데이터를 받을 수 있었다.

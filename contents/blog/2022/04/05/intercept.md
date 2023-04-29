@@ -96,7 +96,10 @@ cf) 후일담으로는 backend 개발자와 이야기를 해보았는데 Riot ap
 
 # 가로채기 intercept
 
-![응답을 중간에 가로채 보자](https://c.tenor.com/uEXr3DWcDQ8AAAAd/girl-baseball.gif)
+<figure align="center">
+  <img src="https://c.tenor.com/uEXr3DWcDQ8AAAAd/girl-baseball.gif" alt="응답을 중간에 가로채 보자"/>
+  <figcaption>응답을 중간에 가로채 보자</figcaption>
+</figure>
 
 앞서 말한 두가지 상황을 개선하기 위해 Axios의 인터셉터 기능을 사용하기로 결정하였다. 요청할 때쓰이는 인스턴스를 정의하고 해당 인스턴스가 요청할때와 응답할 때 쓰이는 인터셉터를 연결하였다. 요청 인터셉터에서는 유저의 기본정보를 바디에 담아주거나 때에 따라 헤더에 삽입하는 구조로 짰고, 응답 인터셉터에서는 HTTP 기본 통신코드 + 커스텀 코드를 확인하고 에러를 던져주는 코드를 작성하였다.
 

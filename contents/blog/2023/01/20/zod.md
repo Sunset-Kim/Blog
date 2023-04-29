@@ -13,7 +13,13 @@ tags:
 
 어플리케이션에서 사용자의 입력값으로 데이터를 입력받아본적이 있다면 말도 안되는 입력값으로 우리를 곤란하게 하는 사용자를 본적이 있을 것이다. 예상치 않은 값이 들어와 에러로 어플리케이션이 뻗어버리거나 인풋으로 script나 query를 집어 넣는 XSS와 같은 공격을 당할 수도 있을 것이다.
 
-![사용자의 입력을 그대로 사용했을때 생기는 일 출처 - giphy(https://media.giphy.com/media/l0NwvUd7IEjn1764U/giphy.gif)](https://media.giphy.com/media/l0NwvUd7IEjn1764U/giphy.gif)
+<figure align="center">
+  <img src="https://media.giphy.com/media/l0NwvUd7IEjn1764U/giphy.gif" alt="tailwind CSS를 생각하는 내 모습"/>
+  <figcaption>
+  사용자의 입력을 그대로 사용했을때 생기는 일 
+  출처 - giphy(https://media.giphy.com/media/l0NwvUd7IEjn1764U/giphy.gif)
+  </figcaption>
+</figure>
 
 최근 개발트렌드로 typescript를 많이 사용하고 있다. 그로 인해서 개발환경에서의 type의 오류로 어플리케이션이 동작하지 않는 일들은 현저히 줄었지만 typescript는 개발단계에서만 type을 보장하므로 어플리케이션이 동작하는 runtime에서는 type을 보장할 수 없다. 그러므로 여전히 runtime에서 type(혹은 여기서는 입력값)이 유효한 지 확인하는 과정은 매우 중요하다고 할 수 있다.
 

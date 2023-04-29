@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
 import Layout from "@components/layouts/Layout";
-import { IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import { graphql, Link } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+import React from "react";
 import Toc from "./Toc";
 
 type Page = { fields: { slug: string }; frontmatter: { date: string; title: string } };
@@ -228,19 +228,21 @@ const PAGE = styled.div`
   }
 `;
 
-export const query = graphql`query ($slug: String!) {
-  markdownRemark(fields: {slug: {eq: $slug}}) {
-    html
-    frontmatter {
-      image {
-        childImageSharp {
-          gatsbyImageData(width: 640, quality: 85, layout: CONSTRAINED)
+export const query = graphql`
+  query ($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        image {
+          childImageSharp {
+            gatsbyImageData(width: 640, quality: 85, layout: CONSTRAINED)
+          }
         }
+        title
+        date(formatString: "MM DD dddd,YYYY", locale: "KO")
+        tags
       }
-      title
-      date(formatString: "MM DD dddd,YYYY", locale: "KO")
-      tags
+      tableOfContents(maxDepth: 6)
     }
-    tableOfContents(maxDepth: 6)
   }
-}`;
+`;

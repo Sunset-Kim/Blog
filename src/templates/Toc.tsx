@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 
 interface Props {
   tableOfContents: string;

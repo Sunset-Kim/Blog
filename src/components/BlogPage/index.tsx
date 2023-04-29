@@ -1,12 +1,12 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { PageProps } from "gatsby";
-import { BlogQuery, ObjectValue, RenderPostList } from "types/Qureys";
+import file from "@assets/file.png";
+import tag from "@assets/tag.png";
 import PostList from "@components/PostList";
 import Layout from "@components/layouts/Layout";
 import styled from "@emotion/styled";
+import { PageProps } from "gatsby";
+import React, { useEffect, useReducer } from "react";
+import { BlogQuery, ObjectValue, RenderPostList } from "types/Qureys";
 import { ArchiveList, TagsList } from "./aside";
-import file from "@assets/file.png";
-import tag from "@assets/tag.png";
 
 type InitState = {
   key?: "year" | "tag" | null;

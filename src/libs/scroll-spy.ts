@@ -51,17 +51,22 @@ export class ScrollSpy {
     const scrollTop = window.pageYOffset;
 
     const targetIndex = findLastIndex(this.spyItems ?? [], (item) => scrollTop >= this.getTargetTop(item));
-    const activeItem = this.spyItems[targetIndex] ?? "";
+    const activeItem = this.spyItems[targetIndex];
+    const id = activeItem?.getAttribute("id");
 
-    if (activeItem) {
-      const id = activeItem.getAttribute("id");
-
-      this.links.find((item) => item.classList.remove("active"));
-      const activeLink = this.links.find(
-        (link) => decodeURI(link.getAttribute("href")?.replace(/^#/, "") ?? "") === id
-      );
-      activeLink?.classList.add("active");
+    if (id) {
+      this.detachClass();
+      this.attachClass(id);
     }
+  }
+
+  private detachClass(): void {
+    this.links.forEach((item) => item.classList.remove("active"));
+  }
+
+  private attachClass(id: string): void {
+    const activeLink = this.links.find((link) => decodeURI(link.getAttribute("href")?.replace(/^#/, "") ?? "") === id);
+    activeLink?.classList.add("active");
   }
 }
 

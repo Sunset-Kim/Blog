@@ -1,14 +1,29 @@
 import styled from "@emotion/styled";
-import React from "react";
+import ScrollSpy from "@libs/scroll-spy";
+import React, { useEffect, useRef } from "react";
 
 interface Props {
   tableOfContents: string;
 }
 
 const Toc: React.FC<Props> = ({ tableOfContents }) => {
+  const tocRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!tocRef.current) return;
+    const headings: HTMLElement[] = Array.from(document.querySelectorAll("h1,h2,h3,h4"));
+    const links: HTMLAnchorElement[] = Array.from(tocRef.current.querySelectorAll("a"));
+
+    const scrollSpy = new ScrollSpy(headings, links, {});
+
+    const destroy = scrollSpy.init();
+
+    return () => {
+      destroy();
+    };
+  }, []);
   return (
     <TOC id="post-toc">
-      <div dangerouslySetInnerHTML={{ __html: tableOfContents }}></div>
+      <div ref={tocRef} dangerouslySetInnerHTML={{ __html: tableOfContents }}></div>
     </TOC>
   );
 };

@@ -1,6 +1,6 @@
 ---
 slug: "/2023/04/30/scroll-spy.md"
-title: "간단한 ScrollSpy 구현하는 2년차 개발자의 단상"
+title: "간단한 ScrollSpy 구현하며 적어보는 2년차 개발자의 단상"
 date: 2023-04-30
 image:
 layout: post

@@ -9,9 +9,9 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-image",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
+    "gatsby-plugin-image",
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -46,7 +46,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/contents/blog`,
       },
     },
-
     `gatsby-plugin-web-font-loader`,
     `gatsby-plugin-emotion`,
   ],

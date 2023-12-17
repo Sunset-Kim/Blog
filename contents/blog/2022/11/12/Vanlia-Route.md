@@ -5,7 +5,6 @@ date: 2022-11-12
 layout: post
 tags:
   - Javascript
-image: ./organize.jpeg
 ---
 
 # 프론트 진영의 빠른(?) 기술변화

@@ -2,7 +2,6 @@
 slug: "/2023/01/20/zod.md"
 title: "프론트엔드에서 zod를 사용하기"
 date: 2023-01-20
-image: ./sanitize.gif
 layout: post
 tags:
   - Javascript

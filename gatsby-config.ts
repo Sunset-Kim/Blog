@@ -1,30 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
 
-const light = {
-  blue: {
-    300: "#8ecae6",
-    400: "#219ebc",
-    500: "#126782",
-    600: "#023047",
-  },
-  orange: {
-    300: "#ffb703",
-    400: "#fd9e02",
-    500: "#fb8500",
-    600: "#fb9017",
-  },
-  bg: {
-    900: "#212529",
-    800: "#343A40",
-    700: "#495057",
-    600: "#6C757D",
-    500: "#ADB5BD",
-    400: "#CED4DA",
-    300: "#DEE2E6",
-    200: "#E9ECEF",
-    100: "#F8F9FA",
-  },
-};
+
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -34,8 +10,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-image",
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
@@ -75,13 +49,6 @@ const config: GatsbyConfig = {
 
     `gatsby-plugin-web-font-loader`,
     `gatsby-plugin-emotion`,
-    {
-      resolve: `gatsby-emotion-dark-mode`,
-      options: {
-        light,
-        dark: light,
-      },
-    },
   ],
 };
 

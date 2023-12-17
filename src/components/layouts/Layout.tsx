@@ -4,6 +4,9 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import github from "@assets/github.png";
 import Footer from "@components/Footer/Footer";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "@theme/index";
+
 
 interface LayoutProps {
   pageTitle: string;
@@ -22,33 +25,36 @@ const Layout: React.FC<LayoutProps & React.PropsWithChildren> = ({ pageTitle, ch
   `);
 
   return (
-    <WRAPPER>
-      <title>
-        {pageTitle} | {site.siteMetadata.title}
-      </title>
+    <ThemeProvider theme={theme}>
+      <WRAPPER>
+        <title>
+          {pageTitle} | {site.siteMetadata.title}
+        </title>
 
-      <Header>
-        <TITLE>
-          <Link to="/">{site.siteMetadata.title}</Link>
-        </TITLE>
+        <Header>
+          <TITLE>
+            <Link to="/">{site.siteMetadata.title}</Link>
+          </TITLE>
 
-        <NAV>
-          <ul>
-            <li>
-              <Link to="/blog">톺아보기</Link>
-            </li>
-            <li>
-              <a href="https://github.com/Sunset-Kim" target="_blank">
-                <img src={github} alt="김민우의깃허브" />
-              </a>
-            </li>
-          </ul>
-        </NAV>
-      </Header>
+          <NAV>
+            <ul>
+              <li>
+                <Link to="/blog">톺아보기</Link>
+              </li>
+              <li>
+                <a href="https://github.com/Sunset-Kim" target="_blank">
+                  <img src={github} alt="김민우의깃허브" />
+                </a>
+              </li>
+            </ul>
+          </NAV>
+        </Header>
 
-      <CONTENTS>{children}</CONTENTS>
-      <Footer />
-    </WRAPPER>
+        <CONTENTS>{children}</CONTENTS>
+        <Footer />
+      </WRAPPER>
+    </ThemeProvider>
+
   );
 };
 

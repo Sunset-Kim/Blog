@@ -34,8 +34,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-image",
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
@@ -75,13 +73,6 @@ const config: GatsbyConfig = {
 
     `gatsby-plugin-web-font-loader`,
     `gatsby-plugin-emotion`,
-    {
-      resolve: `gatsby-emotion-dark-mode`,
-      options: {
-        light,
-        dark: light,
-      },
-    },
   ],
 };
 

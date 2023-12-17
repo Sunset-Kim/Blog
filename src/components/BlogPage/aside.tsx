@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import _ from "lodash";
+import {
+  orderBy
+} from 'lodash-es'
 import React from "react";
 import { RenderPostList } from "types/Qureys";
 import { Params, Path } from "../../constants";
@@ -24,7 +26,7 @@ export const ArchiveList: React.FC<ArchiveListProps> = ({ posts, activeYear }) =
     postsGroupByYear[year].push(post);
   });
 
-  const postsSortByYear = _.orderBy(
+  const postsSortByYear = orderBy(
     Object.entries(postsGroupByYear).map(([year, posts]) => ({
       year,
       posts,
@@ -68,7 +70,7 @@ export const TagsList: React.FC<TagListProps> = ({ posts, activeTag }) => {
     });
   });
 
-  const postsSortByTagCount = _.orderBy(
+  const postsSortByTagCount = orderBy(
     Object.entries(postsGroupByTag).map(([tag, posts]) => ({ tag, posts })),
     (entry) => entry.posts.length,
     "desc"

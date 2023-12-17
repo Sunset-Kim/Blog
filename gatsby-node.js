@@ -15,6 +15,7 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
         "@templates": path.resolve(__dirname, "src/templates"),
         "@containers": path.resolve(__dirname, "src/containers"),
         "@libs": path.resolve(__dirname, "src/libs"),
+        "@theme": path.resolve(__dirname, "src/theme"),
       },
     },
   });
